@@ -1,7 +1,7 @@
-# Experimental protocol (DRAFT, not yet frozen)
+# Experimental protocol
 
-Status: draft of 2026-11-09. The protocol is frozen by a tagged commit
-(`protocol-v1`) before the first full run. After freezing, any change is
+Status: E1/E2 part frozen on 2026-11-09 by tag `protocol-v1` before the
+first full run; E3-E5 sections remain drafts until their own tags. After freezing, any change is
 logged in `PROTOCOL_CHANGES.md` with its reason; nothing is re-tuned on test data.
 
 ## Aim
@@ -36,9 +36,12 @@ Observed data facts (2026-11-09):
 
 ## Common model
 
-A linear head on fixed features: multinomial logistic regression for gas
-identity, ridge regression of log10 concentration per gas. Features: signed
-log transform, standardised on the training block. Feature subsets:
+A linear head on fixed features: ridge regression onto one-hot class targets
+(least-squares classifier), so that NLMS, RLS and block OLS update exactly the
+deployed model; ridge regression of log10 concentration per gas for E3. A
+multinomial logistic head is reported in E1 as a host reference only.
+Features: signed log transform sign(x) log(1+|x|), standardised with the
+source-block mean and standard deviation. Feature subsets:
 d = 16 (dR of each sensor) and d = 128 (all features) for D1; d = 64 (8 features x 8 sensors) and d = 16 for D2.
 
 ## Methods (persistent state in `src/enose_drift/budget.py`)
@@ -59,6 +62,24 @@ over a buffer of k references; M8 direct standardisation; M9 piecewise DS.
   transfer samples; within-board day-to-day drift for boards 1-3.
 - E5: D2 on-board streaming features vs host features; time per sample on each MCU.
 - All of E2-E5 are repeated with Q15/int16 state.
+
+## E1/E2 details (frozen)
+
+- Source: batch 1. Head ridge lambda from {0.01, 0.1, 1, 10, 100}, chosen by
+  static accuracy on batch 2 (ties: larger lambda).
+- Method grids, chosen by mean accuracy on batch 2 over 5 tuning seeds
+  (k = 5 for labelled methods, k = 0 for M0-M2): M1 alpha {0.001, 0.003,
+  0.01, 0.03, 0.1}; M2 beta, same grid; M3 r {1, 2, 3} x eta {0.1, 0.3, 1};
+  M5 mu {0.03, 0.1, 0.3, 0.6, 1}; M6 forgetting {0.9, 0.95, 0.99, 0.999, 1},
+  covariance warm-started from the source fit; M7 gamma {0.1, 1, 10, 100};
+  M1+M5 and M1+M7 reuse the selected M1 alpha and tune mu / gamma.
+- Stream: batches 2-10 in order. In each batch a seeded permutation; the
+  first k samples are labelled references (one calibration session), drawn
+  uniformly from that batch; the rest are predicted in order, unlabelled.
+  State carries over between batches. Budgets k in {0, 1, 5, 20}.
+- Headline: accuracy averaged over batches 3-10 (batch 2 was used for tuning),
+  20 test seeds, 95% bootstrap CI over seeds. M4 fits gain only with k >= 3.
+- Host arithmetic is float64 with float32 state sizes; float32/Q15 replicas follow.
 
 ## Metrics and statistics
 
