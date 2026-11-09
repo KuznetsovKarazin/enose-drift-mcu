@@ -1,0 +1,29 @@
+{
+ "board": "esp32c3",
+ "git_commit": "578719c0f8be2960e2a893d5a33243fbfe407f89",
+ "sources": {
+  "include\\command_protocol.h": "4b54a7d0a918839c8211295d5b7cc5f521e6ee897fffba06a7b62941399889df",
+  "include\\enose_expected.h": "dad280aa12be5e41340f78e248dd6db5b211394da4ae9382a15d7c99d4b04141",
+  "include\\enose_fixture.h": "97935a8500e4ee7de9acaf0ecb4a423ae97b4e57e94f50a245366751ced4dbb9",
+  "include\\enose_kernels.h": "68acd2a5ed92803cc60d7da915c311a7c4e417325df2850811f42627640ce2b0",
+  "include\\enose_suite.h": "0e085803f32f7335ae50a96ef9aa975b1b71c02af3fcbd86ac8953184ba74f1c",
+  "include\\usb_bench_serial.h": "6bc277ab7124e10308913a1fbfc1e94f24d8d30f784a5692fea4e1671af2a4de",
+  "platformio.ini": "137105ec95c07134ea4bc2834f17c5074c48640f43a7a8394ee2f30b7039c2e0",
+  "src\\main.cpp": "c8d4597966022dde4bdef976f97cce62ac6dbc063f3f52ee89047ea2e608c1b1",
+  "src\\usb_bench_phy.c": "cc4168ea0fc9468c1c14f1f3cf35e2a27f492e3eaffe29720d47fb75332676cd"
+ },
+ "images": {
+  "firmware.elf": "183242beb2f172107dc643f1491597d1cb0e28a700adb684b6236a85269943f6",
+  "firmware.bin": "3dce90c5d897f3be91dfb805be8b50630b6e75f32c5a1d07d60ccf2add61c240"
+ },
+ "runs": [
+  {
+   "file": "run01.json",
+   "ok": true
+  },
+  {
+   "file": "run02.json",
+   "ok": true
+  }
+ ]
+}

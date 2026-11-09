@@ -1,0 +1,37 @@
+board,cycles,host_accuracy,host_setting,kernel,n_timings,session_spread_pct,state_bytes,status,unit,us_max,us_median,us_min
+Mega2560,86418,0.4335,E2 d=16 k=20 M0,static16,20,0.0,0,measured,classify,5403.188,5401.125,5401.0
+Mega2560,680677,0.4979,E2 d=128 k=20 M0,static128,20,0.0,0,measured,classify,42546.375,42542.312,42542.125
+Mega2560,124652,0.5406,E2 d=16 k=20 M1,m1_16,20,0.0,132,measured,classify,7792.875,7790.75,7790.688
+Mega2560,983002,0.6143,E2 d=128 k=20 M1,m1_128,20,0.0001,1028,measured,classify,61442.0,61437.625,61437.5
+Mega2560,153646,0.5735,E2 d=16 k=20 M5,nlms16,20,0.0,4,measured,classify + update,9604.812,9602.844,9602.812
+Mega2560,1196302,0.7719,E2 d=128 k=20 M5,nlms128,20,0.0,4,measured,classify + update,74769.0,74768.875,74768.75
+Mega2560,353626,0.8759,E2 d=16 k=20 M6,rls16,20,0.0,1160,measured,classify + update,22102.688,22101.625,22101.562
+Mega2560,,,,rls128,,,-1,skipped,classify + update,,,
+Mega2560,2630816,0.8977,E2 d=16 k=20 M7,ols16,20,0.0,1300,measured,"refit, k=20",164432.0,164426.0,164420.0
+Mega2560,4395328,0.9554,E4 d=16 k=16 M8,ds16_fit,20,0.0,1088,measured,"fit, k=16 pairs",274716.0,274708.0,274708.0
+Mega2560,150590,0.9554,E4 d=16 k=16 M8,ds16_apply,20,0.0,1088,measured,map + classify,9412.0,9411.875,9411.812
+Mega2560,20240,,,extract,20,0.0,426,measured,one 8-channel sample,1265.273,1264.992,1264.977
+ESP32-C3,80870,0.4335,E2 d=16 k=20 M0,static16,20,0.0,0,measured,classify,505.438,505.438,505.438
+ESP32-C3,646220,0.4979,E2 d=128 k=20 M0,static128,20,0.0,0,measured,classify,4039.406,4038.875,4038.5
+ESP32-C3,106020,0.5406,E2 d=16 k=20 M1,m1_16,20,0.0,132,measured,classify,662.625,662.625,662.625
+ESP32-C3,847638,0.6143,E2 d=128 k=20 M1,m1_128,20,0.0018,1028,measured,classify,5298.094,5297.734,5297.0
+ESP32-C3,132758,0.5735,E2 d=16 k=20 M5,nlms16,20,0.0,4,measured,classify + update,829.781,829.734,829.734
+ESP32-C3,1044445,0.7719,E2 d=128 k=20 M5,nlms128,20,0.0002,4,measured,classify + update,6527.906,6527.781,6527.594
+ESP32-C3,288830,0.8759,E2 d=16 k=20 M6,rls16,20,0.0009,1160,measured,classify + update,1805.281,1805.188,1805.172
+ESP32-C3,9264605,0.923,E2 d=128 k=20 M6,rls128,20,0.0001,66568,measured,classify + update,57903.969,57903.781,57903.75
+ESP32-C3,1864000,0.8977,E2 d=16 k=20 M7,ols16,20,0.0086,1300,measured,"refit, k=20",11651.0,11650.0,11650.0
+ESP32-C3,3166640,0.9554,E4 d=16 k=16 M8,ds16_fit,20,0.0025,1088,measured,"fit, k=16 pairs",19807.0,19791.5,19791.0
+ESP32-C3,132165,0.9554,E4 d=16 k=16 M8,ds16_apply,20,0.0009,1088,measured,map + classify,826.047,826.031,826.016
+ESP32-C3,15689,,,extract,20,0.0,428,measured,one 8-channel sample,98.064,98.057,98.053
+ESP32-S3,6049,0.4335,E2 d=16 k=20 M0,static16,20,0.0,0,measured,classify,25.203,25.203,25.203
+ESP32-S3,47288,0.4979,E2 d=128 k=20 M0,static128,20,0.0,0,measured,classify,197.062,197.031,197.031
+ESP32-S3,8816,0.5406,E2 d=16 k=20 M1,m1_16,20,0.0,132,measured,classify,36.734,36.734,36.719
+ESP32-S3,69360,0.6143,E2 d=128 k=20 M1,m1_128,20,0.0,1028,measured,classify,289.0,289.0,288.969
+ESP32-S3,8944,0.5735,E2 d=16 k=20 M5,nlms16,20,0.0419,4,measured,classify + update,37.266,37.266,37.25
+ESP32-S3,68918,0.7719,E2 d=128 k=20 M5,nlms128,20,0.0,4,measured,classify + update,287.188,287.156,287.156
+ESP32-S3,17475,0.8759,E2 d=16 k=20 M6,rls16,20,0.0,1160,measured,classify + update,72.812,72.812,72.797
+ESP32-S3,507416,0.923,E2 d=128 k=20 M6,rls128,20,0.0015,66568,measured,classify + update,2114.25,2114.234,2114.219
+ESP32-S3,191280,0.8977,E2 d=16 k=20 M7,ols16,20,0.1255,1300,measured,"refit, k=20",797.0,797.0,796.0
+ESP32-S3,293760,0.9554,E4 d=16 k=16 M8,ds16_fit,20,0.0817,1088,measured,"fit, k=16 pairs",1224.0,1224.0,1223.0
+ESP32-S3,8439,0.9554,E4 d=16 k=16 M8,ds16_apply,20,0.0444,1088,measured,map + classify,35.172,35.164,35.156
+ESP32-S3,1151,,,extract,20,0.0407,428,measured,one 8-channel sample,4.795,4.795,4.793

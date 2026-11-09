@@ -1,0 +1,154 @@
+********************************************************************************
+Obsolete PIO Core v6.1.18 is used (previous was 6.2.0)
+Please remove multiple PIO Cores from a system:
+https://docs.platformio.org/en/latest/core/installation/troubleshooting.html
+********************************************************************************
+Processing esp32c3 (platform: espressif32@6.12.0; board: esp32-c3-devkitm-1; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-c3-devkitm-1.html
+PLATFORM: Espressif 32 (6.12.0) > Espressif ESP32-C3-DevKitM-1
+HARDWARE: ESP32C3 160MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b 
+ - tool-esptoolpy @ 2.40900.250804 (4.9.0) 
+ - tool-mkfatfs @ 2.0.1 
+ - tool-mklittlefs @ 1.203.210628 (2.3) 
+ - tool-mkspiffs @ 2.230.0 (2.30) 
+ - toolchain-riscv32-esp @ 8.4.0+2021r2-patch5
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 33 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio\build\esp32c3\src\main.cpp.o
+Compiling .pio\build\esp32c3\src\usb_bench_phy.c.o
+Building .pio\build\esp32c3\bootloader.bin
+Generating partitions .pio\build\esp32c3\partitions.bin
+Compiling .pio\build\esp32c3\FrameworkArduino\Esp.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\FirmwareMSC.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\FunctionalInterrupt.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\HWCDC.cpp.o
+esptool.py v4.9.0
+Creating esp32c3 image...
+Merged 1 ELF section
+Successfully created esp32c3 image.
+Compiling .pio\build\esp32c3\FrameworkArduino\HardwareSerial.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\IPAddress.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\IPv6Address.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\MD5Builder.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\Print.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\Stream.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\StreamString.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\Tone.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\USB.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\USBCDC.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\USBMSC.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\WMath.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\WString.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\base64.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\cbuf.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-adc.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-bt.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-cpu.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-dac.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-gpio.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-i2c-slave.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-i2c.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-ledc.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-matrix.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-misc.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-psram.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-rgb-led.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-rmt.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-sigmadelta.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-spi.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-time.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-timer.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-tinyusb.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-touch.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\esp32-hal-uart.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\firmware_msc_fat.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\libb64\cdecode.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\libb64\cencode.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\main.cpp.o
+Compiling .pio\build\esp32c3\FrameworkArduino\stdlib_noniso.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\wiring_pulse.c.o
+Compiling .pio\build\esp32c3\FrameworkArduino\wiring_shift.c.o
+Archiving .pio\build\esp32c3\libFrameworkArduino.a
+Linking .pio\build\esp32c3\firmware.elf
+Retrieving maximum program size .pio\build\esp32c3\firmware.elf
+Checking size .pio\build\esp32c3\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  25.9% (used 84812 bytes from 327680 bytes)
+Flash: [===       ]  26.6% (used 348850 bytes from 1310720 bytes)
+Building .pio\build\esp32c3\firmware.bin
+esptool.py v4.9.0
+Creating esp32c3 image...
+Merged 2 ELF sections
+Successfully created esp32c3 image.
+Configuring upload protocol...
+AVAILABLE: cmsis-dap, esp-bridge, esp-builtin, esp-prog, espota, esptool, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa
+CURRENT: upload_protocol = esptool
+Looking for upload port...
+Using manually specified: COM11
+Uploading .pio\build\esp32c3\firmware.bin
+esptool.py v4.9.0
+Serial port COM11
+Connecting...
+Chip is ESP32-C3 (QFN32) (revision v0.4)
+Features: WiFi, BLE, Embedded Flash 4MB (XMC)
+Crystal is 40MHz
+USB mode: USB-Serial/JTAG
+MAC: 10:00:3b:cc:2c:c4
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00003fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Flash will be erased from 0x0000e000 to 0x0000ffff...
+Flash will be erased from 0x00010000 to 0x00068fff...
+SHA digest in image updated
+Compressed 13248 bytes to 9562...
+Writing at 0x00000000... (100 %)
+Wrote 13248 bytes (9562 compressed) at 0x00000000 in 0.2 seconds (effective 589.3 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 146...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (146 compressed) at 0x00008000 in 0.1 seconds (effective 236.4 kbit/s)...
+Hash of data verified.
+Compressed 8192 bytes to 47...
+Writing at 0x0000e000... (100 %)
+Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 630.5 kbit/s)...
+Hash of data verified.
+Compressed 360512 bytes to 227807...
+Writing at 0x00010000... (7 %)
+Writing at 0x0001433b... (14 %)
+Writing at 0x0001bda6... (21 %)
+Writing at 0x000202f8... (28 %)
+Writing at 0x000250f5... (35 %)
+Writing at 0x0002a433... (42 %)
+Writing at 0x000312de... (50 %)
+Writing at 0x0003ba11... (57 %)
+Writing at 0x0004151f... (64 %)
+Writing at 0x000472f2... (71 %)
+Writing at 0x0004d566... (78 %)
+Writing at 0x000539b8... (85 %)
+Writing at 0x00059d8c... (92 %)
+Writing at 0x000624e8... (100 %)
+Wrote 360512 bytes (227807 compressed) at 0x00010000 in 1.7 seconds (effective 1743.7 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+========================= [SUCCESS] Took 68.76 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32c3        SUCCESS   00:01:08.757
+========================= 1 succeeded in 00:01:08.757 =========================
