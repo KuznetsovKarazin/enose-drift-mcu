@@ -1,7 +1,9 @@
 # Experimental protocol
 
-Status: E1/E2 part frozen on 2026-11-09 by commit 4a439fb (local tag `protocol-v1`; tag push is refused from the cloud session) before the
-first full run; E3-E5 sections remain drafts until their own tags. After freezing, any change is
+Status: E1/E2 frozen on 2026-11-09 by commit 4a439fb (local tag `protocol-v1`;
+tag push is refused from the cloud session) before their first full run.
+E3/E4 frozen by the commit that adds the "E3/E4 details" section below,
+before their first full run. E5 (MCU) remains a draft. After freezing, any change is
 logged in `PROTOCOL_CHANGES.md` with its reason; nothing is re-tuned on test data.
 
 ## Aim
@@ -80,6 +82,34 @@ over a buffer of k references; M8 direct standardisation; M9 piecewise DS.
 - Headline: accuracy averaged over batches 3-10 (batch 2 was used for tuning),
   20 test seeds, 95% bootstrap CI over seeds. M4 fits gain only with k >= 3.
 - Host arithmetic is float64 with float32 state sizes; float32/Q15 replicas follow.
+
+## E3/E4 details (frozen)
+
+E3 (D1b concentration):
+- Target log10(ppmv); gas identity known; one model per gas (6 gases). Source:
+  batch-1 samples of that gas; stream: batches 2-10, that gas only, seeded
+  permutation, first k samples are references with known concentration.
+- Methods: M0, M1, M5, M6, M7, M1+M5, M1+M7 with a one-output ridge head.
+- Selection on batch 2, mean RMSE over gases, 5 tuning seeds (k=5; M1 k=0):
+  head lambda {0.1, 1, 10, 100, 1000}; M1 alpha {0.003, 0.01, 0.03, 0.1, 0.3};
+  M5 mu {0.01, 0.03, 0.1, 0.3, 1}; M6 forgetting {0.8, 0.9, 0.95, 0.99, 1};
+  M7 gamma {0.1, 1, 10, 100, 1000}; combinations reuse M1 alpha.
+- Headline: RMSE (log10 ppm) and median relative error over batches 3-10,
+  averaged over gases with data; seeds base 20270131+300.
+
+E4 (D2 transfer and day drift):
+- Features: 8 per channel from the streaming extractor (d = 64), or dR and
+  dR/R0 per channel (d = 16). Head: 4-gas least-squares classifier on all
+  records of the master board.
+- Transfer i -> j, 20 ordered pairs; k in {0, 2, 4, 8, 16, 40} of the 40
+  (gas, level) conditions drawn per seed; repetition-1 records on both boards
+  form pairs (M4 paired affine, M8 DS, M9 per-channel DS, all ridge-shrunk
+  to identity) or labelled references (M5, M6, M7). Evaluation: every other
+  record of board j. M1 runs on the slave stream with 0 labels.
+- Selection on pair 1 -> 2 only (k = 8, 5 tuning seeds); headline: mean and
+  worst pair over the other 19 pairs, 20 seeds (base 20270131+400).
+- Day drift: boards 1-3, train on R1, stream R2-R4 (R taken as day order, unconfirmed)
+  with k in {0, 2, 4} references per day; hyperparameters reused from transfer selection.
 
 ## Metrics and statistics
 

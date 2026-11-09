@@ -64,3 +64,17 @@ def test_drift_recovered_by_offset_methods():
     ewma = run_stream(M.EWMAStandardise(src.W, 6, 8, 0.05), Z, y, b, [2], 0, 0)[0]["accuracy"]
     aff = run_stream(M.AffineCorrection(src.W, 6, src.centroids), Z, y, b, [2], 12, 0)[0]["accuracy"]
     assert ewma > static and aff > static
+
+
+def test_regression_rls_matches_batch_ridge():
+    rng = np.random.default_rng(3)
+    Z = rng.normal(size=(150, 5)); y = Z @ rng.normal(size=5) + 0.1 * rng.normal(size=150)
+    X = np.exp(Z / 3)
+    src = make_source(X[:100], y[:100], 1.0, classes=None)
+    Zp = src.pre(X)
+    rls = M.RLS(src.W, None, 1.0, None, P0=src.P0)
+    for i in range(100, 150):
+        rls.reference(Zp[i], y[i])
+    assert np.allclose(rls.W, M.fit_ridge(Zp, y, None, 1.0), atol=1e-8)
+    rows = run_stream(M.Static(src.W, None), Zp, y, np.r_[np.ones(100), 2 * np.ones(50)].astype(int), [2], 0, 0, classes=None)
+    assert rows[0]["rmse"] > 0 and "median_rel_error" in rows[0]

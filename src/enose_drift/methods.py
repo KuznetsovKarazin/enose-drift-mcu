@@ -44,10 +44,10 @@ def fit_ridge(Z: np.ndarray, y: np.ndarray, classes: int, lam: float,
               W0: np.ndarray | None = None) -> np.ndarray:
     """argmin ||Y - [Z 1] W||^2 + lam ||W - W0||^2 (bias not penalised)."""
     A = augment(Z)
-    Y = np.eye(classes)[y]
+    Y = np.asarray(y, float)[:, None] if classes is None else np.eye(classes)[y]
     R = lam * np.eye(A.shape[1])
     R[-1, -1] = 1e-9
-    W0 = np.zeros((A.shape[1], classes)) if W0 is None else W0
+    W0 = np.zeros((A.shape[1], Y.shape[1])) if W0 is None else W0
     return np.linalg.solve(A.T @ A + R, A.T @ Y + R @ W0)
 
 
@@ -60,9 +60,13 @@ class Method:
     name = "M0"
     sequential = False
 
-    def __init__(self, W: np.ndarray, classes: int):
+    def __init__(self, W: np.ndarray, classes: int | None):
+        """`classes=None` selects regression: one output, real-valued target."""
         self.W = W.copy()
         self.classes = classes
+
+    def _t(self, y):
+        return np.array([float(y)]) if self.classes is None else np.eye(self.classes)[y]
 
     def transform(self, Z):
         return Z
@@ -71,10 +75,11 @@ class Method:
         return augment(self.transform(Z)) @ self.W
 
     def predict_many(self, Z):
-        return np.argmax(self.scores(Z), axis=1)
+        s = self.scores(Z)
+        return s[:, 0] if self.classes is None else np.argmax(s, axis=1)
 
     def observe(self, z):
-        return int(self.predict_many(z[None])[0])
+        return self.predict_many(z[None])[0]
 
     def reference(self, z, y):
         pass
@@ -243,7 +248,7 @@ class NLMS(Method):
 
     def reference(self, z, y):
         a = augment(self.transform(z[None]))[0]
-        err = np.eye(self.classes)[y] - a @ self.W
+        err = self._t(y) - a @ self.W
         self.W += self.mu * np.outer(a, err) / (a @ a + 1e-6)
 
     def state_bytes(self):
@@ -265,7 +270,7 @@ class RLS(Method):
         a = augment(self.transform(z[None]))[0]
         Pa = self.P @ a
         gain = Pa / (self.lam + a @ Pa)
-        err = np.eye(self.classes)[y] - a @ self.W
+        err = self._t(y) - a @ self.W
         self.W += np.outer(gain, err)
         self.P = (self.P - np.outer(gain, Pa)) / self.lam
         self.P = (self.P + self.P.T) / 2
@@ -313,7 +318,7 @@ class Combined(Method):
 
     def observe(self, z):
         self.front._update(z)
-        return int(self.back.predict_many(self.front.transform(z[None]))[0])
+        return self.back.predict_many(self.front.transform(z[None]))[0]
 
     def reference(self, z, y):
         self.front._update(z)
