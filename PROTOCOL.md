@@ -1,6 +1,6 @@
 # Experimental protocol
 
-Status: E1/E2 part frozen on 2026-11-09 by tag `protocol-v1` before the
+Status: E1/E2 part frozen on 2026-11-09 by commit 4a439fb (local tag `protocol-v1`; tag push is refused from the cloud session) before the
 first full run; E3-E5 sections remain drafts until their own tags. After freezing, any change is
 logged in `PROTOCOL_CHANGES.md` with its reason; nothing is re-tuned on test data.
 

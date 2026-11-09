@@ -1,0 +1,55 @@
+{
+ "commit": "4a439fb4adad791ad669fca9ecd3fd076374cad0",
+ "dirty_worktree": true,
+ "python": "3.13.18 (main, Oct 26 2026, 14:08:19) [Clang 23.1.3 ]",
+ "platform": "Linux-6.18.44-fc-v310-x86_64-with-glibc2.39",
+ "numpy": "2.5.3",
+ "seconds": 694.4,
+ "test_seeds": [
+  20270131,
+  20270132,
+  20270133,
+  20270134,
+  20270135,
+  20270136,
+  20270137,
+  20270138,
+  20270139,
+  20270140,
+  20270141,
+  20270142,
+  20270143,
+  20270144,
+  20270145,
+  20270146,
+  20270147,
+  20270148,
+  20270149,
+  20270150
+ ],
+ "tune_seeds": [
+  20271131,
+  20271132,
+  20271133,
+  20271134,
+  20271135
+ ],
+ "budgets": [
+  0,
+  1,
+  5,
+  20
+ ],
+ "dims": [
+  16,
+  128
+ ],
+ "data_sha256": "98fe3a30981a222dd4518fbcc3dddd45d5c0ce9b03ef6dc6fe5cf7a04cfbff5e",
+ "files": {
+  "e1.json": "d6a0a0076ff3af7d22a050ce05e9dff56a1d3afdaa7e7439dc8832cc4ad1f4c7",
+  "e2_runs.json": "fd52a40e44820fdef658b3b89e14987ec885f62b27c44185b9539cad825eba48",
+  "e2_summary.json": "10f867c24aa4abaa64ca0cf47887a0207f4743d9eafc0dbb4a40dcce97a7bce6",
+  "hyperparameters.json": "5bb852cfdfc8fbe85a1420dd0d357a20c108a604b8a859c3812b73efd6ffd04a",
+  "tuning.json": "bdaeaccd6a19467b28fdb65c8c596fa73bf7198e7076cfc08d11b6fb6c5bbe47"
+ }
+}
