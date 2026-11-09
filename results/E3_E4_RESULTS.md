@@ -93,7 +93,7 @@ Code: commit c9799aa; feature cache SHA-256 65d095c49485d4a0...; runtime 91 s. A
 | 64 | 4 | M7 | 0.796 | 0.813 | 0.839 | 1,028 |
 
 Findings:
-1. Board-to-board variation costs more than day-to-day drift: a master model on a slave board gives 0.83 (worst pair 0.47 at d=64), while within a board accuracy stays at 0.88-0.93 over about two weeks.
+1. Board-to-board variation costs more than day-to-day drift: a master model on a slave board gives 0.83 (worst pair 0.47 at d=64), while within a board accuracy stays at 0.87-0.95 over up to 17 days.
 2. Zero labels: M1 on the slave stream gives 0.895 (d=16, 132 B) and 0.915 (d=64, 516 B).
 3. Direct standardisation on the compact features (d=16, 1,088 B) reaches 0.925 with 8 transfer pairs and 0.955 with 16, worst pair 0.87 and 0.92. On the full features (d=64) DS needs 16.6 kB and is not better (0.919 and 0.946), so the 8 kB Mega2560 is not a limiting factor here.
 4. Per-channel DS (M9) and paired affine (M4) give 0.89-0.90 with 128-192 B at d=16, about the same as M1 with no labels.
