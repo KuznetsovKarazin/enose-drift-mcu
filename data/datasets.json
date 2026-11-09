@@ -1,0 +1,30 @@
+{
+  "D1": {
+    "name": "Gas Sensor Array Drift Dataset",
+    "uci_id": 224,
+    "url": "https://archive.ics.uci.edu/static/public/224/gas+sensor+array+drift+dataset.zip",
+    "file": "gas_sensor_array_drift_dataset.zip",
+    "sha256": "91e8f466f202e7a093d657673ce47311c3e90416f7df3057966058961c351fe4",
+    "license": "research use only (UCI page); no redistribution in this repository",
+    "cite": ["Vergara et al., Sensors and Actuators B (2012)"]
+  },
+  "D1b": {
+    "name": "Gas Sensor Array Drift Dataset at Different Concentrations",
+    "uci_id": 270,
+    "url": "https://archive.ics.uci.edu/static/public/270/gas+sensor+array+drift+dataset+at+different+concentrations.zip",
+    "file": "gas_sensor_array_drift_dataset_at_different_concentrations.zip",
+    "sha256": "98fe3a30981a222dd4518fbcc3dddd45d5c0ce9b03ef6dc6fe5cf7a04cfbff5e",
+    "license": "research use only (UCI page); no redistribution in this repository",
+    "cite": ["Vergara et al. 2012", "Rodriguez-Lujan et al., Chemometrics and Intelligent Laboratory Systems 130 (2014)"]
+  },
+  "D2": {
+    "name": "Twin gas sensor arrays",
+    "uci_id": 361,
+    "url": "https://archive.ics.uci.edu/static/public/361/twin+gas+sensor+arrays.zip",
+    "file": "twin_gas_sensor_arrays.zip",
+    "sha256": "e8801de3a98d3db2b48fccf0be4d681879a1441f5732ac6fbee1c48a05b49167",
+    "license": "CC BY 4.0",
+    "doi": "10.24432/C5MW3K",
+    "cite": ["Fonollosa et al., Sensors and Actuators B (2016), doi:10.1016/j.snb.2016.05.089"]
+  }
+}
