@@ -1,0 +1,1746 @@
+[
+ {
+  "d": 16,
+  "k": 0,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.31246346251553847,
+  "median_rel_error_mean": 0.7543232512198834,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3533881700370853,
+    "median_rel_error": 1.0623468288051439
+   },
+   "ethylene": {
+    "rmse": 0.3666564897297916,
+    "median_rel_error": 1.4755027353163266
+   },
+   "ammonia": {
+    "rmse": 0.3072576792749929,
+    "median_rel_error": 0.6777405433536231
+   },
+   "acetaldehyde": {
+    "rmse": 0.30525789376346724,
+    "median_rel_error": 0.49013142636436047
+   },
+   "acetone": {
+    "rmse": 0.21680422175635777,
+    "median_rel_error": 0.2521122233357365
+   },
+   "toluene": {
+    "rmse": 0.3254163205315359,
+    "median_rel_error": 0.5681057501441102
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 0,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.3517598297184727,
+  "median_rel_error_mean": 1.140988444205025,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.42153692539122806,
+    "median_rel_error": 1.9323733486421808
+   },
+   "ethylene": {
+    "rmse": 0.3912815073532086,
+    "median_rel_error": 1.785067002510667
+   },
+   "ammonia": {
+    "rmse": 0.3808801343453476,
+    "median_rel_error": 1.090349865852317
+   },
+   "acetaldehyde": {
+    "rmse": 0.2520456548181347,
+    "median_rel_error": 0.3743270144534503
+   },
+   "acetone": {
+    "rmse": 0.247056461966005,
+    "median_rel_error": 0.6136962054568244
+   },
+   "toluene": {
+    "rmse": 0.4177582944369121,
+    "median_rel_error": 1.050117228314711
+   }
+  },
+  "state_bytes": 132,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.31243226999676305,
+  "median_rel_error_mean": 0.7530448144327941,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.35334993709797685,
+    "median_rel_error": 1.0614099207656054
+   },
+   "ethylene": {
+    "rmse": 0.3666603305096395,
+    "median_rel_error": 1.4699787405710834
+   },
+   "ammonia": {
+    "rmse": 0.30719083612177317,
+    "median_rel_error": 0.6771034566490239
+   },
+   "acetaldehyde": {
+    "rmse": 0.30519121061017307,
+    "median_rel_error": 0.4900424880131702
+   },
+   "acetone": {
+    "rmse": 0.21687201132782197,
+    "median_rel_error": 0.25169722372223735
+   },
+   "toluene": {
+    "rmse": 0.3253292943131939,
+    "median_rel_error": 0.5680370568756453
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.35188017483454975,
+  "median_rel_error_mean": 1.1426222184664325,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.4225434896147032,
+    "median_rel_error": 1.940829576997308
+   },
+   "ethylene": {
+    "rmse": 0.39222904157140376,
+    "median_rel_error": 1.7910468671798434
+   },
+   "ammonia": {
+    "rmse": 0.37994786945637704,
+    "median_rel_error": 1.084199552878006
+   },
+   "acetaldehyde": {
+    "rmse": 0.25119845379545225,
+    "median_rel_error": 0.37407848193450244
+   },
+   "acetone": {
+    "rmse": 0.24743916589640563,
+    "median_rel_error": 0.6148490795595208
+   },
+   "toluene": {
+    "rmse": 0.41792302867295655,
+    "median_rel_error": 1.0507297522494143
+   }
+  },
+  "state_bytes": 132,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M5",
+  "hp": {
+   "mu": 0.01
+  },
+  "rmse_mean_over_gases": 0.3082530089547067,
+  "median_rel_error_mean": 0.7315125056651836,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3491977516270508,
+    "median_rel_error": 1.029749373943334
+   },
+   "ethylene": {
+    "rmse": 0.3595741354320109,
+    "median_rel_error": 1.4123032320533275
+   },
+   "ammonia": {
+    "rmse": 0.3017511003509887,
+    "median_rel_error": 0.6499060495952893
+   },
+   "acetaldehyde": {
+    "rmse": 0.29652029572131955,
+    "median_rel_error": 0.4800634407535965
+   },
+   "acetone": {
+    "rmse": 0.21614430986133887,
+    "median_rel_error": 0.25028182281075334
+   },
+   "toluene": {
+    "rmse": 0.3263304607355313,
+    "median_rel_error": 0.5667711148348006
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.28264615732072,
+  "median_rel_error_mean": 0.6215056085688516,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.33039018058403485,
+    "median_rel_error": 0.8897984754668794
+   },
+   "ethylene": {
+    "rmse": 0.33954796214947336,
+    "median_rel_error": 1.2046691465220207
+   },
+   "ammonia": {
+    "rmse": 0.27523905669873805,
+    "median_rel_error": 0.5184844084088025
+   },
+   "acetaldehyde": {
+    "rmse": 0.2276884123674145,
+    "median_rel_error": 0.364064878619597
+   },
+   "acetone": {
+    "rmse": 0.2125910065770819,
+    "median_rel_error": 0.24408722561029647
+   },
+   "toluene": {
+    "rmse": 0.31042032554757754,
+    "median_rel_error": 0.5079295167855133
+   }
+  },
+  "state_bytes": 1160,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.22366615405578347,
+  "median_rel_error_mean": 0.3463554286397444,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.22147746275314417,
+    "median_rel_error": 0.31846485250797507
+   },
+   "ethylene": {
+    "rmse": 0.22910845972459554,
+    "median_rel_error": 0.3608988298242491
+   },
+   "ammonia": {
+    "rmse": 0.2070415474606074,
+    "median_rel_error": 0.2180739027589122
+   },
+   "acetaldehyde": {
+    "rmse": 0.1998697380676831,
+    "median_rel_error": 0.2783999127591965
+   },
+   "acetone": {
+    "rmse": 0.22457830142769475,
+    "median_rel_error": 0.2827739909736268
+   },
+   "toluene": {
+    "rmse": 0.25992141490097587,
+    "median_rel_error": 0.6195210830145066
+   }
+  },
+  "state_bytes": 65,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 0.3,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.32865160713475544,
+  "median_rel_error_mean": 0.9575118262320057,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3988518262417322,
+    "median_rel_error": 1.6291718645348034
+   },
+   "ethylene": {
+    "rmse": 0.3527992384218647,
+    "median_rel_error": 1.3472582889183848
+   },
+   "ammonia": {
+    "rmse": 0.3495169778936954,
+    "median_rel_error": 0.8961040975670642
+   },
+   "acetaldehyde": {
+    "rmse": 0.24408450146207467,
+    "median_rel_error": 0.35460556700677903
+   },
+   "acetone": {
+    "rmse": 0.24789073614713125,
+    "median_rel_error": 0.6482318316563254
+   },
+   "toluene": {
+    "rmse": 0.37876636264203467,
+    "median_rel_error": 0.8696993077086778
+   }
+  },
+  "state_bytes": 136,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 1,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 10.0,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.27106886686081655,
+  "median_rel_error_mean": 0.4854378674215398,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.32086572067698793,
+    "median_rel_error": 0.6954955156641691
+   },
+   "ethylene": {
+    "rmse": 0.256110656573361,
+    "median_rel_error": 0.4411803263202412
+   },
+   "ammonia": {
+    "rmse": 0.24275918095939372,
+    "median_rel_error": 0.3321870393042537
+   },
+   "acetaldehyde": {
+    "rmse": 0.24576937799834617,
+    "median_rel_error": 0.4262845047104976
+   },
+   "acetone": {
+    "rmse": 0.23484877390800235,
+    "median_rel_error": 0.5560285635013771
+   },
+   "toluene": {
+    "rmse": 0.32605949104880816,
+    "median_rel_error": 0.46145125502870016
+   }
+  },
+  "state_bytes": 197,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.3124025787763294,
+  "median_rel_error_mean": 0.754130304619578,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3532344135043322,
+    "median_rel_error": 1.0612980782700259
+   },
+   "ethylene": {
+    "rmse": 0.36620675694060345,
+    "median_rel_error": 1.4758137939460922
+   },
+   "ammonia": {
+    "rmse": 0.30715228000551104,
+    "median_rel_error": 0.6786305747367744
+   },
+   "acetaldehyde": {
+    "rmse": 0.3054871841119618,
+    "median_rel_error": 0.4899078718220601
+   },
+   "acetone": {
+    "rmse": 0.21698249397555544,
+    "median_rel_error": 0.2516652130171051
+   },
+   "toluene": {
+    "rmse": 0.32535234412001224,
+    "median_rel_error": 0.56746629592541
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.3526302520738578,
+  "median_rel_error_mean": 1.1526044601018928,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.42664954005974226,
+    "median_rel_error": 1.9801530195452202
+   },
+   "ethylene": {
+    "rmse": 0.3947960276797925,
+    "median_rel_error": 1.8147026633695447
+   },
+   "ammonia": {
+    "rmse": 0.37750768981989175,
+    "median_rel_error": 1.0754177615926668
+   },
+   "acetaldehyde": {
+    "rmse": 0.24906032066522096,
+    "median_rel_error": 0.37017342475843135
+   },
+   "acetone": {
+    "rmse": 0.24885649121506814,
+    "median_rel_error": 0.6198581318250095
+   },
+   "toluene": {
+    "rmse": 0.4189114430034312,
+    "median_rel_error": 1.055321759520484
+   }
+  },
+  "state_bytes": 132,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M5",
+  "hp": {
+   "mu": 0.01
+  },
+  "rmse_mean_over_gases": 0.29361816955191017,
+  "median_rel_error_mean": 0.6561803665392486,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3343626731921641,
+    "median_rel_error": 0.9210790504101082
+   },
+   "ethylene": {
+    "rmse": 0.3331597983621582,
+    "median_rel_error": 1.2110929169589697
+   },
+   "ammonia": {
+    "rmse": 0.2840105883843622,
+    "median_rel_error": 0.5668174083061365
+   },
+   "acetaldehyde": {
+    "rmse": 0.26648364943608116,
+    "median_rel_error": 0.435715960013495
+   },
+   "acetone": {
+    "rmse": 0.21390548583311236,
+    "median_rel_error": 0.24591988148631025
+   },
+   "toluene": {
+    "rmse": 0.32978682210358284,
+    "median_rel_error": 0.5564569820604724
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.19267201884353571,
+  "median_rel_error_mean": 0.16999193960427542,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.15548355511951825,
+    "median_rel_error": 0.17619866082618663
+   },
+   "ethylene": {
+    "rmse": 0.1854840632474562,
+    "median_rel_error": 0.2184452228985295
+   },
+   "ammonia": {
+    "rmse": 0.17777007772897704,
+    "median_rel_error": 0.15218161854466566
+   },
+   "acetaldehyde": {
+    "rmse": 0.1689818670511217,
+    "median_rel_error": 0.16786965158713946
+   },
+   "acetone": {
+    "rmse": 0.1744048191648897,
+    "median_rel_error": 0.13667644650050823
+   },
+   "toluene": {
+    "rmse": 0.2939077307492516,
+    "median_rel_error": 0.16858003726862308
+   }
+  },
+  "state_bytes": 1160,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.18404558430055803,
+  "median_rel_error_mean": 0.21343866582149684,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.19173340858007576,
+    "median_rel_error": 0.23181441632526636
+   },
+   "ethylene": {
+    "rmse": 0.18551305571628096,
+    "median_rel_error": 0.26465521306307344
+   },
+   "ammonia": {
+    "rmse": 0.16390368760796478,
+    "median_rel_error": 0.1781097239700347
+   },
+   "acetaldehyde": {
+    "rmse": 0.1606196219878716,
+    "median_rel_error": 0.21952619594907335
+   },
+   "acetone": {
+    "rmse": 0.1859476897881312,
+    "median_rel_error": 0.21361795124932065
+   },
+   "toluene": {
+    "rmse": 0.21655604212302385,
+    "median_rel_error": 0.1729084943722125
+   }
+  },
+  "state_bytes": 325,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 0.3,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.29459130416035023,
+  "median_rel_error_mean": 0.6578665383410681,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3812162371903792,
+    "median_rel_error": 1.3021113879946449
+   },
+   "ethylene": {
+    "rmse": 0.350567984745391,
+    "median_rel_error": 0.7854337491040682
+   },
+   "ammonia": {
+    "rmse": 0.2601026832350996,
+    "median_rel_error": 0.4792388757524999
+   },
+   "acetaldehyde": {
+    "rmse": 0.2235203556433678,
+    "median_rel_error": 0.282908430290793
+   },
+   "acetone": {
+    "rmse": 0.23207157473388848,
+    "median_rel_error": 0.5620419029017938
+   },
+   "toluene": {
+    "rmse": 0.3200689894139751,
+    "median_rel_error": 0.5354648840026092
+   }
+  },
+  "state_bytes": 136,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 5,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 10.0,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.2231067096865529,
+  "median_rel_error_mean": 0.37619489712195636,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.27576465852828846,
+    "median_rel_error": 0.5600185936331514
+   },
+   "ethylene": {
+    "rmse": 0.22720347682286027,
+    "median_rel_error": 0.35102524518122713
+   },
+   "ammonia": {
+    "rmse": 0.19208783731418136,
+    "median_rel_error": 0.24318755870011471
+   },
+   "acetaldehyde": {
+    "rmse": 0.18582080365207526,
+    "median_rel_error": 0.3460815682113553
+   },
+   "acetone": {
+    "rmse": 0.19538213038472793,
+    "median_rel_error": 0.40714251103163435
+   },
+   "toluene": {
+    "rmse": 0.26238135141718444,
+    "median_rel_error": 0.34971390597425533
+   }
+  },
+  "state_bytes": 457,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.3293013933718112,
+  "median_rel_error_mean": 0.7747836191266514,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3529891609185432,
+    "median_rel_error": 1.06517210015363
+   },
+   "ethylene": {
+    "rmse": 0.3669136166353818,
+    "median_rel_error": 1.4878890122133348
+   },
+   "ammonia": {
+    "rmse": 0.34504979099323047,
+    "median_rel_error": 0.7376273398837434
+   },
+   "acetaldehyde": {
+    "rmse": 0.3049601576388067,
+    "median_rel_error": 0.4922614353222709
+   },
+   "acetone": {
+    "rmse": 0.2375743519849518,
+    "median_rel_error": 0.2641486443401865
+   },
+   "toluene": {
+    "rmse": 0.3683212820599532,
+    "median_rel_error": 0.6016031828467427
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.3644903669334196,
+  "median_rel_error_mean": 1.1893113374784245,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.43517649134713166,
+    "median_rel_error": 2.1310535295230757
+   },
+   "ethylene": {
+    "rmse": 0.4006974684119233,
+    "median_rel_error": 1.8759436686406468
+   },
+   "ammonia": {
+    "rmse": 0.42942032753741066,
+    "median_rel_error": 1.2493032880345682
+   },
+   "acetaldehyde": {
+    "rmse": 0.24642285209900588,
+    "median_rel_error": 0.3656186468413958
+   },
+   "acetone": {
+    "rmse": 0.26940200525889174,
+    "median_rel_error": 0.6871770885149223
+   },
+   "toluene": {
+    "rmse": 0.40582305694615417,
+    "median_rel_error": 0.8267718033159378
+   }
+  },
+  "state_bytes": 132,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M5",
+  "hp": {
+   "mu": 0.01
+  },
+  "rmse_mean_over_gases": 0.27426711717811436,
+  "median_rel_error_mean": 0.489412147484983,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.29954092456079245,
+    "median_rel_error": 0.6700798969037158
+   },
+   "ethylene": {
+    "rmse": 0.27317486734008084,
+    "median_rel_error": 0.7548228884728736
+   },
+   "ammonia": {
+    "rmse": 0.27766678690625024,
+    "median_rel_error": 0.4162166885244891
+   },
+   "acetaldehyde": {
+    "rmse": 0.20673829513676237,
+    "median_rel_error": 0.32782219973108856
+   },
+   "acetone": {
+    "rmse": 0.22941773215012237,
+    "median_rel_error": 0.24661953355261543
+   },
+   "toluene": {
+    "rmse": 0.35906409697467784,
+    "median_rel_error": 0.5209116777251156
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.3220130723758231,
+  "median_rel_error_mean": 0.10957119756856455,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.14086993634906683,
+    "median_rel_error": 0.05560099743414941
+   },
+   "ethylene": {
+    "rmse": 0.18003476327649875,
+    "median_rel_error": 0.09758728154815455
+   },
+   "ammonia": {
+    "rmse": 0.29138496469176495,
+    "median_rel_error": 0.20670105458118074
+   },
+   "acetaldehyde": {
+    "rmse": 0.15017285628607432,
+    "median_rel_error": 0.0639145483163227
+   },
+   "acetone": {
+    "rmse": 0.21893031563776436,
+    "median_rel_error": 0.13127535627963696
+   },
+   "toluene": {
+    "rmse": 0.9506855980137694,
+    "median_rel_error": 0.10234794725194293
+   }
+  },
+  "state_bytes": 1160,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.17355006719645927,
+  "median_rel_error_mean": 0.1928593170145332,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.159693147150989,
+    "median_rel_error": 0.19604191889753805
+   },
+   "ethylene": {
+    "rmse": 0.16127459964793248,
+    "median_rel_error": 0.21699507460111178
+   },
+   "ammonia": {
+    "rmse": 0.17528678711483803,
+    "median_rel_error": 0.181312932107205
+   },
+   "acetaldehyde": {
+    "rmse": 0.13357288101677672,
+    "median_rel_error": 0.18307096766377756
+   },
+   "acetone": {
+    "rmse": 0.19194153092339172,
+    "median_rel_error": 0.22309716528646834
+   },
+   "toluene": {
+    "rmse": 0.21953145732482754,
+    "median_rel_error": 0.1566378435310985
+   }
+  },
+  "state_bytes": 1300,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 0.3,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.24814161196121423,
+  "median_rel_error_mean": 0.36502401341790974,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.3422805328047672,
+    "median_rel_error": 0.6741727398410172
+   },
+   "ethylene": {
+    "rmse": 0.30768207354104093,
+    "median_rel_error": 0.337087570120601
+   },
+   "ammonia": {
+    "rmse": 0.23621756183195142,
+    "median_rel_error": 0.2788100811451725
+   },
+   "acetaldehyde": {
+    "rmse": 0.14572389404733216,
+    "median_rel_error": 0.22827530570391996
+   },
+   "acetone": {
+    "rmse": 0.21338382435314454,
+    "median_rel_error": 0.37124123312010715
+   },
+   "toluene": {
+    "rmse": 0.24356178518904917,
+    "median_rel_error": 0.30055715057664095
+   }
+  },
+  "state_bytes": 136,
+  "payload_bytes": 68
+ },
+ {
+  "d": 16,
+  "k": 20,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 10.0,
+   "alpha": 0.1
+  },
+  "rmse_mean_over_gases": 0.16074095490181062,
+  "median_rel_error_mean": 0.21913103290880923,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.17150929500874262,
+    "median_rel_error": 0.26699208808045505
+   },
+   "ethylene": {
+    "rmse": 0.13406597105609946,
+    "median_rel_error": 0.18943807815278108
+   },
+   "ammonia": {
+    "rmse": 0.17995356015145209,
+    "median_rel_error": 0.19250973932584656
+   },
+   "acetaldehyde": {
+    "rmse": 0.12060295241485508,
+    "median_rel_error": 0.17489546065687733
+   },
+   "acetone": {
+    "rmse": 0.15419526003229553,
+    "median_rel_error": 0.2598994753446299
+   },
+   "toluene": {
+    "rmse": 0.20411869074741884,
+    "median_rel_error": 0.23105135589226555
+   }
+  },
+  "state_bytes": 1432,
+  "payload_bytes": 68
+ },
+ {
+  "d": 128,
+  "k": 0,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.32632250842625943,
+  "median_rel_error_mean": 0.9072668447691384,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.5707084861180867,
+    "median_rel_error": 3.022332869657941
+   },
+   "ethylene": {
+    "rmse": 0.3010966458338961,
+    "median_rel_error": 0.9110521356436425
+   },
+   "ammonia": {
+    "rmse": 0.23348799661158054,
+    "median_rel_error": 0.33299135119721857
+   },
+   "acetaldehyde": {
+    "rmse": 0.3125383564550136,
+    "median_rel_error": 0.41636947446665246
+   },
+   "acetone": {
+    "rmse": 0.28676422780652666,
+    "median_rel_error": 0.3699423915747072
+   },
+   "toluene": {
+    "rmse": 0.25333933773245293,
+    "median_rel_error": 0.3909128460746693
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 0,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.24072904647597304,
+  "median_rel_error_mean": 0.5109253601704333,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.22779252692887236,
+    "median_rel_error": 0.5657966166008702
+   },
+   "ethylene": {
+    "rmse": 0.18070712061981262,
+    "median_rel_error": 0.42199445255568263
+   },
+   "ammonia": {
+    "rmse": 0.33079356995195813,
+    "median_rel_error": 0.73247661799407
+   },
+   "acetaldehyde": {
+    "rmse": 0.19594086689981088,
+    "median_rel_error": 0.2425523910493789
+   },
+   "acetone": {
+    "rmse": 0.1698583692527883,
+    "median_rel_error": 0.29675241455505785
+   },
+   "toluene": {
+    "rmse": 0.3392818252025961,
+    "median_rel_error": 0.8059796682675404
+   }
+  },
+  "state_bytes": 1028,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.32628737904015603,
+  "median_rel_error_mean": 0.9060255980455132,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.5707194856953018,
+    "median_rel_error": 3.022154042873064
+   },
+   "ethylene": {
+    "rmse": 0.30109696287785165,
+    "median_rel_error": 0.9053561199848776
+   },
+   "ammonia": {
+    "rmse": 0.23329299243883644,
+    "median_rel_error": 0.33347112335919754
+   },
+   "acetaldehyde": {
+    "rmse": 0.3125802366733413,
+    "median_rel_error": 0.4166438782134322
+   },
+   "acetone": {
+    "rmse": 0.28674183258913655,
+    "median_rel_error": 0.3678589662549293
+   },
+   "toluene": {
+    "rmse": 0.25329276396646855,
+    "median_rel_error": 0.3906694575875775
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.24075446346360216,
+  "median_rel_error_mean": 0.5118009440403465,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.2278973088626858,
+    "median_rel_error": 0.5668880218301615
+   },
+   "ethylene": {
+    "rmse": 0.1810835100772259,
+    "median_rel_error": 0.4238174223102538
+   },
+   "ammonia": {
+    "rmse": 0.33054650215551257,
+    "median_rel_error": 0.7340487324978542
+   },
+   "acetaldehyde": {
+    "rmse": 0.1958356781020704,
+    "median_rel_error": 0.2424128923221164
+   },
+   "acetone": {
+    "rmse": 0.169863363593467,
+    "median_rel_error": 0.2968713731879635
+   },
+   "toluene": {
+    "rmse": 0.3393004179906511,
+    "median_rel_error": 0.8067672220937301
+   }
+  },
+  "state_bytes": 1028,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M5",
+  "hp": {
+   "mu": 1.0
+  },
+  "rmse_mean_over_gases": 0.18292947081789732,
+  "median_rel_error_mean": 0.23079345871016366,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.16982525903049184,
+    "median_rel_error": 0.23095276400368042
+   },
+   "ethylene": {
+    "rmse": 0.18311606204839206,
+    "median_rel_error": 0.2342242783530924
+   },
+   "ammonia": {
+    "rmse": 0.18639522915998952,
+    "median_rel_error": 0.16701045271006865
+   },
+   "acetaldehyde": {
+    "rmse": 0.18254763899574616,
+    "median_rel_error": 0.21207416886215835
+   },
+   "acetone": {
+    "rmse": 0.1543965115102038,
+    "median_rel_error": 0.16790390446269848
+   },
+   "toluene": {
+    "rmse": 0.22129612416256045,
+    "median_rel_error": 0.3725951838692835
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.1817851326131744,
+  "median_rel_error_mean": 0.27297853345703965,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.19889579062758553,
+    "median_rel_error": 0.4410368729457077
+   },
+   "ethylene": {
+    "rmse": 0.16086842335866597,
+    "median_rel_error": 0.25651272741046005
+   },
+   "ammonia": {
+    "rmse": 0.18074844215253166,
+    "median_rel_error": 0.17177874870346083
+   },
+   "acetaldehyde": {
+    "rmse": 0.1638708482263204,
+    "median_rel_error": 0.2040055871082871
+   },
+   "acetone": {
+    "rmse": 0.16453825935938537,
+    "median_rel_error": 0.17351806274674741
+   },
+   "toluene": {
+    "rmse": 0.22178903195455738,
+    "median_rel_error": 0.3910192018275749
+   }
+  },
+  "state_bytes": 66568,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.17635817042748048,
+  "median_rel_error_mean": 0.2740826389164365,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.14951848454284802,
+    "median_rel_error": 0.19533738543369092
+   },
+   "ethylene": {
+    "rmse": 0.13362306389759881,
+    "median_rel_error": 0.18212115895783196
+   },
+   "ammonia": {
+    "rmse": 0.2124887516211719,
+    "median_rel_error": 0.19415052159894267
+   },
+   "acetaldehyde": {
+    "rmse": 0.16883049608504982,
+    "median_rel_error": 0.2990244598379998
+   },
+   "acetone": {
+    "rmse": 0.19044282523758777,
+    "median_rel_error": 0.30183729024632394
+   },
+   "toluene": {
+    "rmse": 0.20324540118062664,
+    "median_rel_error": 0.47202501742382963
+   }
+  },
+  "state_bytes": 513,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 1.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.17833793873262405,
+  "median_rel_error_mean": 0.254071169835145,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.1594112950577192,
+    "median_rel_error": 0.2689871340256339
+   },
+   "ethylene": {
+    "rmse": 0.14537747140276022,
+    "median_rel_error": 0.21557204486130815
+   },
+   "ammonia": {
+    "rmse": 0.21187353982619203,
+    "median_rel_error": 0.28518735423987607
+   },
+   "acetaldehyde": {
+    "rmse": 0.1667481805901129,
+    "median_rel_error": 0.17835767741709402
+   },
+   "acetone": {
+    "rmse": 0.17584449947692588,
+    "median_rel_error": 0.2811797537201093
+   },
+   "toluene": {
+    "rmse": 0.21077264604203413,
+    "median_rel_error": 0.2951430547468485
+   }
+  },
+  "state_bytes": 1032,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 1,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 1000.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.21219796973977578,
+  "median_rel_error_mean": 0.386563442163439,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.18519262631998287,
+    "median_rel_error": 0.3459395227532314
+   },
+   "ethylene": {
+    "rmse": 0.15050242883147966,
+    "median_rel_error": 0.24234863095275844
+   },
+   "ammonia": {
+    "rmse": 0.240516939743023,
+    "median_rel_error": 0.25798277771575473
+   },
+   "acetaldehyde": {
+    "rmse": 0.21626683880882483,
+    "median_rel_error": 0.493137333592988
+   },
+   "acetone": {
+    "rmse": 0.22501515015763401,
+    "median_rel_error": 0.4533314533305258
+   },
+   "toluene": {
+    "rmse": 0.25569383457771033,
+    "median_rel_error": 0.5266409346353756
+   }
+  },
+  "state_bytes": 1541,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.3262565231696151,
+  "median_rel_error_mean": 0.9080693126386264,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.5707582595724976,
+    "median_rel_error": 3.0240614327213575
+   },
+   "ethylene": {
+    "rmse": 0.300965204269965,
+    "median_rel_error": 0.9141006238773137
+   },
+   "ammonia": {
+    "rmse": 0.23299278490024902,
+    "median_rel_error": 0.3365551935838223
+   },
+   "acetaldehyde": {
+    "rmse": 0.3129130870972694,
+    "median_rel_error": 0.4168134749198436
+   },
+   "acetone": {
+    "rmse": 0.2866775655389386,
+    "median_rel_error": 0.3664793594501
+   },
+   "toluene": {
+    "rmse": 0.25323223763877123,
+    "median_rel_error": 0.3904057912793224
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.24116093779681524,
+  "median_rel_error_mean": 0.5143278659635738,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.22908430680519998,
+    "median_rel_error": 0.5721847037485276
+   },
+   "ethylene": {
+    "rmse": 0.18235857787076581,
+    "median_rel_error": 0.4304101187969122
+   },
+   "ammonia": {
+    "rmse": 0.3301081330418102,
+    "median_rel_error": 0.7358034173532768
+   },
+   "acetaldehyde": {
+    "rmse": 0.19601116967860832,
+    "median_rel_error": 0.24259164790483068
+   },
+   "acetone": {
+    "rmse": 0.16974964391774783,
+    "median_rel_error": 0.2980880334813222
+   },
+   "toluene": {
+    "rmse": 0.3396537954667594,
+    "median_rel_error": 0.8068892744965737
+   }
+  },
+  "state_bytes": 1028,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M5",
+  "hp": {
+   "mu": 1.0
+  },
+  "rmse_mean_over_gases": 0.15425612125018176,
+  "median_rel_error_mean": 0.18151629921888604,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.11712055709545628,
+    "median_rel_error": 0.13819925807977992
+   },
+   "ethylene": {
+    "rmse": 0.1523863013907111,
+    "median_rel_error": 0.18801195905155935
+   },
+   "ammonia": {
+    "rmse": 0.17227722068195783,
+    "median_rel_error": 0.15066234154265454
+   },
+   "acetaldehyde": {
+    "rmse": 0.15520336090147457,
+    "median_rel_error": 0.18236805605979975
+   },
+   "acetone": {
+    "rmse": 0.1364394826963649,
+    "median_rel_error": 0.14595716322214652
+   },
+   "toluene": {
+    "rmse": 0.19210980473512582,
+    "median_rel_error": 0.28389901735737605
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.147700852679722,
+  "median_rel_error_mean": 0.11099467813587549,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.08671482850238967,
+    "median_rel_error": 0.06470890941496851
+   },
+   "ethylene": {
+    "rmse": 0.11703596635319477,
+    "median_rel_error": 0.10174920532578506
+   },
+   "ammonia": {
+    "rmse": 0.20058794009606204,
+    "median_rel_error": 0.1520806608435533
+   },
+   "acetaldehyde": {
+    "rmse": 0.11760372323964097,
+    "median_rel_error": 0.08852990912102245
+   },
+   "acetone": {
+    "rmse": 0.1697462516954948,
+    "median_rel_error": 0.12801841813729617
+   },
+   "toluene": {
+    "rmse": 0.19451640619154964,
+    "median_rel_error": 0.13088096597262747
+   }
+  },
+  "state_bytes": 66568,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.13774010695793767,
+  "median_rel_error_mean": 0.1602397710727547,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.12097723521145651,
+    "median_rel_error": 0.1414791067548884
+   },
+   "ethylene": {
+    "rmse": 0.1077476895501516,
+    "median_rel_error": 0.1336291161443826
+   },
+   "ammonia": {
+    "rmse": 0.15846109750643134,
+    "median_rel_error": 0.15002841730520367
+   },
+   "acetaldehyde": {
+    "rmse": 0.13036301680581558,
+    "median_rel_error": 0.16145150497149924
+   },
+   "acetone": {
+    "rmse": 0.1470705746952611,
+    "median_rel_error": 0.17651347061269487
+   },
+   "toluene": {
+    "rmse": 0.16182102797850986,
+    "median_rel_error": 0.19833701064785944
+   }
+  },
+  "state_bytes": 2565,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 1.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.15571699471305767,
+  "median_rel_error_mean": 0.2035063894466055,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.13426540267107825,
+    "median_rel_error": 0.2081275119452494
+   },
+   "ethylene": {
+    "rmse": 0.13380287391555531,
+    "median_rel_error": 0.19168466649464327
+   },
+   "ammonia": {
+    "rmse": 0.19675666469680267,
+    "median_rel_error": 0.22406749313976318
+   },
+   "acetaldehyde": {
+    "rmse": 0.1099606685623284,
+    "median_rel_error": 0.11675984655585339
+   },
+   "acetone": {
+    "rmse": 0.1543411635233492,
+    "median_rel_error": 0.23071601356441077
+   },
+   "toluene": {
+    "rmse": 0.20517519490923225,
+    "median_rel_error": 0.2496828049797132
+   }
+  },
+  "state_bytes": 1032,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 5,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 1000.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.1689710208261205,
+  "median_rel_error_mean": 0.24807438402565749,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.1669867839456408,
+    "median_rel_error": 0.2976485391844107
+   },
+   "ethylene": {
+    "rmse": 0.1252347750586265,
+    "median_rel_error": 0.18123393114251263
+   },
+   "ammonia": {
+    "rmse": 0.17696648737635443,
+    "median_rel_error": 0.19235553530617458
+   },
+   "acetaldehyde": {
+    "rmse": 0.16204599122053812,
+    "median_rel_error": 0.266387268023608
+   },
+   "acetone": {
+    "rmse": 0.18038982155092223,
+    "median_rel_error": 0.3037438052871576
+   },
+   "toluene": {
+    "rmse": 0.2022022658046411,
+    "median_rel_error": 0.24707722521008127
+   }
+  },
+  "state_bytes": 3593,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M0",
+  "hp": {},
+  "rmse_mean_over_gases": 0.3404918944463935,
+  "median_rel_error_mean": 0.9249078777254899,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.5699826818271958,
+    "median_rel_error": 3.028249615380549
+   },
+   "ethylene": {
+    "rmse": 0.3013477333541078,
+    "median_rel_error": 0.9348845173737124
+   },
+   "ammonia": {
+    "rmse": 0.2504509286332519,
+    "median_rel_error": 0.32151448983046177
+   },
+   "acetaldehyde": {
+    "rmse": 0.31081992600240954,
+    "median_rel_error": 0.4235117869899634
+   },
+   "acetone": {
+    "rmse": 0.3082772640484246,
+    "median_rel_error": 0.37788015291942323
+   },
+   "toluene": {
+    "rmse": 0.30207283281297154,
+    "median_rel_error": 0.4634067038588302
+   }
+  },
+  "state_bytes": 0,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M1",
+  "hp": {
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.24914325134810825,
+  "median_rel_error_mean": 0.518711404303672,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.23312517418302034,
+    "median_rel_error": 0.5983948755296394
+   },
+   "ethylene": {
+    "rmse": 0.18598131057242395,
+    "median_rel_error": 0.45309879605844505
+   },
+   "ammonia": {
+    "rmse": 0.34876213530025807,
+    "median_rel_error": 0.7415709727359417
+   },
+   "acetaldehyde": {
+    "rmse": 0.1924098878127396,
+    "median_rel_error": 0.2511424946096747
+   },
+   "acetone": {
+    "rmse": 0.1919927372481249,
+    "median_rel_error": 0.3395171949108401
+   },
+   "toluene": {
+    "rmse": 0.3425882629720826,
+    "median_rel_error": 0.728544091977491
+   }
+  },
+  "state_bytes": 1028,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M5",
+  "hp": {
+   "mu": 1.0
+  },
+  "rmse_mean_over_gases": 0.13998315617498402,
+  "median_rel_error_mean": 0.16996232716978885,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.09355170591785604,
+    "median_rel_error": 0.11554334982220738
+   },
+   "ethylene": {
+    "rmse": 0.10389038424247284,
+    "median_rel_error": 0.11602514450265082
+   },
+   "ammonia": {
+    "rmse": 0.1964059562695259,
+    "median_rel_error": 0.2091554558969048
+   },
+   "acetaldehyde": {
+    "rmse": 0.10952615369101378,
+    "median_rel_error": 0.14549950979828652
+   },
+   "acetone": {
+    "rmse": 0.1381363088482884,
+    "median_rel_error": 0.1391350451745536
+   },
+   "toluene": {
+    "rmse": 0.19838842808074714,
+    "median_rel_error": 0.2944154578241297
+   }
+  },
+  "state_bytes": 4,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M6",
+  "hp": {
+   "forget": 0.8
+  },
+  "rmse_mean_over_gases": 0.3166492418364437,
+  "median_rel_error_mean": 0.21653002191078066,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.09572591190369524,
+    "median_rel_error": 0.06751794334355243
+   },
+   "ethylene": {
+    "rmse": 0.21505751877753393,
+    "median_rel_error": 0.2171468345982186
+   },
+   "ammonia": {
+    "rmse": 0.6557699246653513,
+    "median_rel_error": 0.47629218760512865
+   },
+   "acetaldehyde": {
+    "rmse": 0.2242356412605518,
+    "median_rel_error": 0.10602596757325691
+   },
+   "acetone": {
+    "rmse": 0.3166478674683095,
+    "median_rel_error": 0.2632764589498528
+   },
+   "toluene": {
+    "rmse": 0.3924585869432205,
+    "median_rel_error": 0.1689207393946745
+   }
+  },
+  "state_bytes": 66568,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M7",
+  "hp": {
+   "gamma": 1000.0
+  },
+  "rmse_mean_over_gases": 0.11912705108400178,
+  "median_rel_error_mean": 0.1278863134425622,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.0963184114728772,
+    "median_rel_error": 0.11297977549030833
+   },
+   "ethylene": {
+    "rmse": 0.082881782116183,
+    "median_rel_error": 0.09424807945100323
+   },
+   "ammonia": {
+    "rmse": 0.14787200147893295,
+    "median_rel_error": 0.12874643497180244
+   },
+   "acetaldehyde": {
+    "rmse": 0.09516687328033786,
+    "median_rel_error": 0.11488113546408414
+   },
+   "acetone": {
+    "rmse": 0.13535402373268904,
+    "median_rel_error": 0.16220105054456602
+   },
+   "toluene": {
+    "rmse": 0.1571692144229906,
+    "median_rel_error": 0.1542614047336091
+   }
+  },
+  "state_bytes": 10260,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M1+M5",
+  "hp": {
+   "mu": 1.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.15305583320246927,
+  "median_rel_error_mean": 0.19551978818162788,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.10964813757650275,
+    "median_rel_error": 0.16193126710563788
+   },
+   "ethylene": {
+    "rmse": 0.1290863743622682,
+    "median_rel_error": 0.16372143277519186
+   },
+   "ammonia": {
+    "rmse": 0.23697724131027928,
+    "median_rel_error": 0.27782005842997237
+   },
+   "acetaldehyde": {
+    "rmse": 0.07661641540249048,
+    "median_rel_error": 0.09255447639588374
+   },
+   "acetone": {
+    "rmse": 0.16378721814746494,
+    "median_rel_error": 0.24532288633797883
+   },
+   "toluene": {
+    "rmse": 0.20221961241581,
+    "median_rel_error": 0.2317686080451027
+   }
+  },
+  "state_bytes": 1032,
+  "payload_bytes": 516
+ },
+ {
+  "d": 128,
+  "k": 20,
+  "method": "M1+M7",
+  "hp": {
+   "gamma": 1000.0,
+   "alpha": 0.003
+  },
+  "rmse_mean_over_gases": 0.15671102783584615,
+  "median_rel_error_mean": 0.21880029218338048,
+  "per_gas": {
+   "ethanol": {
+    "rmse": 0.1416446417075238,
+    "median_rel_error": 0.25202277973579107
+   },
+   "ethylene": {
+    "rmse": 0.1049296430655529,
+    "median_rel_error": 0.14891945827048364
+   },
+   "ammonia": {
+    "rmse": 0.17515717470643383,
+    "median_rel_error": 0.16780096766249203
+   },
+   "acetaldehyde": {
+    "rmse": 0.12380077659985544,
+    "median_rel_error": 0.22026096893411848
+   },
+   "acetone": {
+    "rmse": 0.17624462098317484,
+    "median_rel_error": 0.2840348589496206
+   },
+   "toluene": {
+    "rmse": 0.21848930995253615,
+    "median_rel_error": 0.23976271954777711
+   }
+  },
+  "state_bytes": 11288,
+  "payload_bytes": 516
+ }
+]
