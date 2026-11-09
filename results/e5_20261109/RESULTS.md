@@ -48,7 +48,7 @@ Extractor state is 426 B on AVR and 428 B on the ESP32 targets (struct padding).
 2. The streaming extractor at 100 Hz uses 12.7 % of the Mega2560, 1.0 % of the
    ESP32-C3 and 0.05 % of the ESP32-S3 (time per sample / 10 ms).
 3. The ESP32-C3 has no FPU and is 10.7-14.1x faster than the Mega2560, close to
-   the clock ratio of 10. The ESP32-S3 with FPU is a further 13-29x faster.
+   the clock ratio of 10. The ESP32-S3 with FPU is a further 15-27x faster.
 4. Label-driven adaptation is cheap relative to inference: NLMS adds 1.4-1.8x
    to the static classify time at 4 B of state; RLS at d=16 adds 2.9-4.1x.
 5. For the same budget of about 1.1 kB, DS at d=16 (0.955 on D2) and RLS at d=16
