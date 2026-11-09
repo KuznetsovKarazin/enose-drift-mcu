@@ -1,0 +1,174 @@
+{
+ "seed": 20270631,
+ "sizes": {
+  "N16": 64,
+  "N128": 32,
+  "OLS_K": 20,
+  "DS_K": 16,
+  "DS_N": 64,
+  "EXT_N": 512,
+  "EXT_STRIDE": 20
+ },
+ "sources": {
+  "d1": "D1b batch 7 (seeded permutation)",
+  "d2_transfer": "board 1 -> board 2, d=16",
+  "extractor": "B1_GCO_F010_R1.txt"
+ },
+ "hyperparameters": {
+  "e1e2": {
+   "16": {
+    "head_lambda": 100.0,
+    "methods": {
+     "M0": {},
+     "M1": {
+      "alpha": 0.001
+     },
+     "M2": {
+      "beta": 0.001
+     },
+     "M3": {
+      "r": 3,
+      "eta": 0.3
+     },
+     "M4": {},
+     "M5": {
+      "mu": 0.03
+     },
+     "M6": {
+      "forget": 0.9
+     },
+     "M7": {
+      "gamma": 0.1
+     },
+     "M1+M5": {
+      "mu": 0.03,
+      "alpha": 0.001
+     },
+     "M1+M7": {
+      "gamma": 0.1,
+      "alpha": 0.001
+     }
+    }
+   },
+   "128": {
+    "head_lambda": 10.0,
+    "methods": {
+     "M0": {},
+     "M1": {
+      "alpha": 0.003
+     },
+     "M2": {
+      "beta": 0.001
+     },
+     "M3": {
+      "r": 3,
+      "eta": 0.3
+     },
+     "M4": {},
+     "M5": {
+      "mu": 0.3
+     },
+     "M6": {
+      "forget": 0.9
+     },
+     "M7": {
+      "gamma": 100.0
+     },
+     "M1+M5": {
+      "mu": 0.3,
+      "alpha": 0.003
+     },
+     "M1+M7": {
+      "gamma": 100.0,
+      "alpha": 0.003
+     }
+    }
+   }
+  },
+  "e4": {
+   "head_lambda": 10.0,
+   "methods": {
+    "M0": {},
+    "M1": {
+     "alpha": 0.03
+    },
+    "M4": {
+     "rho": 10.0
+    },
+    "M5": {
+     "mu": 0.1
+    },
+    "M6": {
+     "forget": 0.9
+    },
+    "M7": {
+     "gamma": 100.0
+    },
+    "M8": {
+     "rho": 1.0
+    },
+    "M9": {
+     "rho": 10.0
+    }
+   }
+  }
+ },
+ "host_cflags": [
+  "-std=c11",
+  "-O2",
+  "-fno-fast-math",
+  "-ffp-contract=off",
+  "-Wall",
+  "-Wextra"
+ ],
+ "parity_host_c_vs_python": {
+  "static16": {
+   "n": 64,
+   "agree": 64
+  },
+  "m1_16": {
+   "n": 64,
+   "agree": 64
+  },
+  "nlms16": {
+   "n": 64,
+   "agree": 64
+  },
+  "rls16": {
+   "n": 64,
+   "agree": 64
+  },
+  "ols16": {
+   "n": 44,
+   "agree": 44
+  },
+  "static128": {
+   "n": 32,
+   "agree": 32
+  },
+  "m1_128": {
+   "n": 32,
+   "agree": 32
+  },
+  "nlms128": {
+   "n": 32,
+   "agree": 32
+  },
+  "rls128": {
+   "n": 32,
+   "agree": 32
+  },
+  "ds16_apply": {
+   "n": 64,
+   "agree": 64
+  },
+  "extract_bit_exact": true,
+  "extract_max_abs_diff": 0.0
+ },
+ "sha256": {
+  "enose_fixture.h": "24ca6187b2d587b8e15706ea54a15015e8e58838c9d2cd67be920b8e084f0cad",
+  "enose_expected.h": "e9c8ab89ea2ee1cbdbbbf3926be719cc3451e6d5ffc4ab5a2a8ecec01481eb99",
+  "enose_kernels.h": "75b868c996b2b7c29867c1c5c5521ff334e1ab73d841e60085df9815972c1717",
+  "enose_suite.h": "f0790967ed27f54855a1823dbd937e4c02cf68be3b30a9adb2f4f73ab92204f6"
+ }
+}
