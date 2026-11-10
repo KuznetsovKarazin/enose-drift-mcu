@@ -7,10 +7,12 @@ Usage: python paper/make_assets.py
 from __future__ import annotations
 
 import csv
+import os
 import json
 from collections import defaultdict
 from pathlib import Path
 
+os.environ.setdefault("SOURCE_DATE_EPOCH", "0")  # reproducible PDF metadata
 import matplotlib
 
 matplotlib.use("Agg")
