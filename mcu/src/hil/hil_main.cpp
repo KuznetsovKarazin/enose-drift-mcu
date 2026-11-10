@@ -229,13 +229,12 @@ void loop() {
     case 'I': { uint8_t m = rbyte(), d = rbyte(); paint(); init_method(m, d); break; }
     case 'R': { uint8_t y = rbyte(); rbytes(xin, 4 * H.d); do_reference(y); OUT.println("r"); break; }
     case 'Q': {   // DS pair: slave then master raw features
-      rbytes(xin, 4 * H.d);
+      rbytes(xbuf, 8 * (size_t)H.d);   // whole frame first: the AVR RX buffer holds only 64 bytes
       if (H.k < 16) {
-        hpre(xin, H.mu, H.sd, H.d, H.Z + H.k * H.d);
-        rbytes(xin, 4 * H.d);
-        hpre(xin, H.mu, H.sd, H.d, H.T + H.k * H.d);
+        hpre(xbuf, H.mu, H.sd, H.d, H.Z + H.k * H.d);
+        hpre(xbuf + H.d, H.mu, H.sd, H.d, H.T + H.k * H.d);
         H.k++;
-      } else rbytes(xin, 4 * H.d);
+      }
       OUT.println("q"); break;
     }
     case 'E': do_end(); OUT.println("e"); break;

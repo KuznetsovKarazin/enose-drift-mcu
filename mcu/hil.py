@@ -203,6 +203,7 @@ def main():
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--mega-d128", action="store_true")
     ap.add_argument("--no-upload", action="store_true")
+    ap.add_argument("--skip-d1", action="store_true", help="run only DS and the extractor")
     a = ap.parse_args()
     if a.out.exists():
         ap.error("choose a new output directory")
@@ -222,7 +223,7 @@ def main():
         plan += [(n, 128) for n in ("M0", "M1", "M5", "M1+M5")]
     if a.board != "mega2560":
         plan += [("M6", 128)]
-    for name, d in plan:
+    for name, d in ([] if a.skip_d1 else plan):
         print(f"D1 stream {name} d={d} ...", flush=True)
         r = run_d1(link, a.board, name, d); results.append(r)
         print(f"  agreement {r['agree']}/{r['n']}, stack {r['stack_peak_bytes']} B", flush=True)
@@ -241,14 +242,15 @@ def main():
     build = HERE / ".pio" / "build" / env
     images = {n: sha(build / n) for n in ("firmware.elf", "firmware.hex", "firmware.bin") if (build / n).exists()}
     ok_d1 = all(r["agree"] == r["n"] for r in results if r["kind"] == "d1_stream")
+    ok_ds = all(r["accuracy_board"] == r["accuracy_host_fused32"] for r in results if r["kind"] == "ds_fused")
     ok_ext = all(r["max_rel_diff"] <= 1e-5 for r in results if r["kind"] == "extractor")
     summary = dict(board=a.board, git_commit=git, utc=datetime.now(timezone.utc).isoformat(), seconds=round(time.time() - t0),
                    images=images, raw_sha256=sha(a.out / "raw.log"), all_d1_predictions_match=ok_d1,
-                   extractor_within_1e_5=ok_ext,
+                   extractor_within_1e_5=ok_ext, ds_accuracy_matches_host=ok_ds,
                    sources={str(p.relative_to(HERE)): sha(p) for p in sorted([*HERE.glob("include/*.h"), *HERE.glob("src/hil/*"), HERE / "platformio.ini", HERE / "hil.py"])})
     (a.out / "results.json").write_text(json.dumps(results, indent=1))
     (a.out / "manifest.json").write_text(json.dumps(summary, indent=1))
-    print("Validated" if ok_d1 and ok_ext else "Finished with mismatches (please send the folder anyway)", a.out)
+    print("Validated" if ok_d1 and ok_ext and ok_ds else "Finished with mismatches (please send the folder anyway)", a.out)
 
 
 if __name__ == "__main__":

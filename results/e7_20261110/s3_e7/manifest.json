@@ -1,0 +1,24 @@
+{
+ "board": "esp32s3",
+ "git_commit": "578719c0f8be2960e2a893d5a33243fbfe407f89",
+ "utc": "2026-11-10T21:46:10.016634+00:00",
+ "seconds": 134,
+ "images": {
+  "firmware.elf": "0b7cb67f11d857a74f1afa90d700c7129b1822f6aacd4e92444cd56c5a7f9dd6",
+  "firmware.bin": "c383512a4e2b2b889b330b787e4f06e66723b34eda18921c1c93b66e85d7e7f3"
+ },
+ "raw_sha256": "bb5b02a3cb9b037cbfedd9014d43d49a648d81639f54b02607d35e07f6582ef9",
+ "all_d1_predictions_match": false,
+ "extractor_within_1e_5": true,
+ "sources": {
+  "hil.py": "47f571d904a9f82b18402c24d61c9a10c2f97236ec6643677c58989110511918",
+  "include\\command_protocol.h": "91ba51df991fefb41fb8d519e0bff1ba2bb67539cf6261d0aa62f21260473b73",
+  "include\\enose_expected.h": "e9c8ab89ea2ee1cbdbbbf3926be719cc3451e6d5ffc4ab5a2a8ecec01481eb99",
+  "include\\enose_fixture.h": "24ca6187b2d587b8e15706ea54a15015e8e58838c9d2cd67be920b8e084f0cad",
+  "include\\enose_kernels.h": "75b868c996b2b7c29867c1c5c5521ff334e1ab73d841e60085df9815972c1717",
+  "include\\enose_suite.h": "f0790967ed27f54855a1823dbd937e4c02cf68be3b30a9adb2f4f73ab92204f6",
+  "include\\usb_bench_serial.h": "303d111bb995158bc95c2b457807dba3072c944c475d4367b15973ef658ad442",
+  "platformio.ini": "8afa0d8007276aa5b2197f2b03e7379b390551d1b0f78d6388cf8bc04e0abe7e",
+  "src\\hil\\hil_main.cpp": "84a72a26d555ea7a014def7c624351f4a0ab132a4c44c357db7801a3aadb13fe"
+ }
+}

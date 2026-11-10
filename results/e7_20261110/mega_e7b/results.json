@@ -1,0 +1,494 @@
+[
+ {
+  "kind": "d1_stream",
+  "method": "M0",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 472,
+  "agree": 13285,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.7344771241830066,
+    "accuracy_host_f32": 0.7344771241830066,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.7592592592592593,
+    "accuracy_host_f32": 0.7592592592592593,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 0.3971631205673759,
+    "accuracy_host_f32": 0.3971631205673759,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.5084745762711864,
+    "accuracy_host_f32": 0.5084745762711864,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.31491228070175437,
+    "accuracy_host_f32": 0.31491228070175437,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.3414973559699416,
+    "accuracy_host_f32": 0.3414973559699416,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.14233576642335766,
+    "accuracy_host_f32": 0.14233576642335766,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.32666666666666666,
+    "accuracy_host_f32": 0.32666666666666666,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.6491620111731844,
+    "accuracy_host_f32": 0.6491620111731844,
+    "agree": 3580
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 608072,
+  "n_obs": 13285,
+  "us_obs": 73665552,
+  "n_end": 9,
+  "us_end": 40,
+  "stack_peak_bytes": 415
+ },
+ {
+  "kind": "d1_stream",
+  "method": "M1",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 600,
+  "agree": 13285,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.7598039215686274,
+    "accuracy_host_f32": 0.7598039215686274,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.6532567049808429,
+    "accuracy_host_f32": 0.6532567049808429,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 0.40425531914893614,
+    "accuracy_host_f32": 0.40425531914893614,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.5988700564971752,
+    "accuracy_host_f32": 0.5988700564971752,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.6925438596491228,
+    "accuracy_host_f32": 0.6925438596491228,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.5839131644865015,
+    "accuracy_host_f32": 0.5839131644865015,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.3175182481751825,
+    "accuracy_host_f32": 0.3175182481751825,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.4444444444444444,
+    "accuracy_host_f32": 0.4444444444444444,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.5567039106145252,
+    "accuracy_host_f32": 0.5567039106145252,
+    "agree": 3580
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 1032436,
+  "n_obs": 13285,
+  "us_obs": 105108372,
+  "n_end": 9,
+  "us_end": 44,
+  "stack_peak_bytes": 415
+ },
+ {
+  "kind": "d1_stream",
+  "method": "M5",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 472,
+  "agree": 13285,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.7410130718954249,
+    "accuracy_host_f32": 0.7410130718954249,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.5938697318007663,
+    "accuracy_host_f32": 0.5938697318007663,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 0.40425531914893614,
+    "accuracy_host_f32": 0.40425531914893614,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.5819209039548022,
+    "accuracy_host_f32": 0.5819209039548022,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.5885964912280702,
+    "accuracy_host_f32": 0.5885964912280702,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.5608126913442806,
+    "accuracy_host_f32": 0.5608126913442806,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.4051094890510949,
+    "accuracy_host_f32": 0.4051094890510949,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.6488888888888888,
+    "accuracy_host_f32": 0.6488888888888888,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.6033519553072626,
+    "accuracy_host_f32": 0.6033519553072626,
+    "agree": 3580
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 1376760,
+  "n_obs": 13285,
+  "us_obs": 73689548,
+  "n_end": 9,
+  "us_end": 40,
+  "stack_peak_bytes": 415
+ },
+ {
+  "kind": "d1_stream",
+  "method": "M6",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 1696,
+  "agree": 13284,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.7377450980392157,
+    "accuracy_host_f32": 0.7377450980392157,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.6079182630906769,
+    "accuracy_host_f32": 0.6079182630906769,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 0.8085106382978723,
+    "accuracy_host_f32": 0.8085106382978723,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.7909604519774012,
+    "accuracy_host_f32": 0.7909604519774012,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.9315789473684211,
+    "accuracy_host_f32": 0.9315789473684211,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.9746729752296132,
+    "accuracy_host_f32": 0.9746729752296132,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.8065693430656934,
+    "accuracy_host_f32": 0.8065693430656934,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.9777777777777777,
+    "accuracy_host_f32": 0.9777777777777777,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.729050279329609,
+    "accuracy_host_f32": 0.729050279329609,
+    "agree": 3579
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 3764116,
+  "n_obs": 13285,
+  "us_obs": 73559144,
+  "n_end": 9,
+  "us_end": 44,
+  "stack_peak_bytes": 420
+ },
+ {
+  "kind": "d1_stream",
+  "method": "M7",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 3820,
+  "agree": 13285,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.8341503267973857,
+    "accuracy_host_f32": 0.8341503267973857,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.975095785440613,
+    "accuracy_host_f32": 0.975095785440613,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 1.0,
+    "accuracy_host_f32": 1.0,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.9265536723163842,
+    "accuracy_host_f32": 0.9265536723163842,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.9100877192982456,
+    "accuracy_host_f32": 0.9100877192982456,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.9435012524352908,
+    "accuracy_host_f32": 0.9435012524352908,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.8394160583941606,
+    "accuracy_host_f32": 0.8394160583941606,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.9266666666666666,
+    "accuracy_host_f32": 0.9266666666666666,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.846927374301676,
+    "accuracy_host_f32": 0.846927374301676,
+    "agree": 3580
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 615836,
+  "n_obs": 13285,
+  "us_obs": 73423884,
+  "n_end": 9,
+  "us_end": 1418460,
+  "stack_peak_bytes": 425
+ },
+ {
+  "kind": "d1_stream",
+  "method": "M1+M5",
+  "d": 16,
+  "k": 20,
+  "seed": 20270131,
+  "init_ram_bytes": 600,
+  "agree": 13285,
+  "n": 13285,
+  "batches": [
+   {
+    "batch": 2,
+    "n": 1224,
+    "accuracy_board": 0.7140522875816994,
+    "accuracy_host_f32": 0.7140522875816994,
+    "agree": 1224
+   },
+   {
+    "batch": 3,
+    "n": 1566,
+    "accuracy_board": 0.5740740740740741,
+    "accuracy_host_f32": 0.5740740740740741,
+    "agree": 1566
+   },
+   {
+    "batch": 4,
+    "n": 141,
+    "accuracy_board": 0.3971631205673759,
+    "accuracy_host_f32": 0.3971631205673759,
+    "agree": 141
+   },
+   {
+    "batch": 5,
+    "n": 177,
+    "accuracy_board": 0.5819209039548022,
+    "accuracy_host_f32": 0.5819209039548022,
+    "agree": 177
+   },
+   {
+    "batch": 6,
+    "n": 2280,
+    "accuracy_board": 0.5964912280701754,
+    "accuracy_host_f32": 0.5964912280701754,
+    "agree": 2280
+   },
+   {
+    "batch": 7,
+    "n": 3593,
+    "accuracy_board": 0.5588644586696354,
+    "accuracy_host_f32": 0.5588644586696354,
+    "agree": 3593
+   },
+   {
+    "batch": 8,
+    "n": 274,
+    "accuracy_board": 0.38321167883211676,
+    "accuracy_host_f32": 0.38321167883211676,
+    "agree": 274
+   },
+   {
+    "batch": 9,
+    "n": 450,
+    "accuracy_board": 0.6822222222222222,
+    "accuracy_host_f32": 0.6822222222222222,
+    "agree": 450
+   },
+   {
+    "batch": 10,
+    "n": 3580,
+    "accuracy_board": 0.4631284916201117,
+    "accuracy_host_f32": 0.4631284916201117,
+    "agree": 3580
+   }
+  ],
+  "n_ref": 180,
+  "us_ref": 1801920,
+  "n_obs": 13285,
+  "us_obs": 105072876,
+  "n_end": 9,
+  "us_end": 52,
+  "stack_peak_bytes": 415
+ }
+]
