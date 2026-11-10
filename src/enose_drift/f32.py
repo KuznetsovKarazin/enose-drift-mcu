@@ -49,7 +49,17 @@ def _lib():
     return lib
 
 
-LIB = _lib()
+class _LazyLib:
+    """Compile and load the library on first use, so that importing this module needs no C compiler."""
+    _lib = None
+
+    def __getattr__(self, name):
+        if _LazyLib._lib is None:
+            _LazyLib._lib = _lib()
+        return getattr(_LazyLib._lib, name)
+
+
+LIB = _LazyLib()
 
 
 def f32(a):

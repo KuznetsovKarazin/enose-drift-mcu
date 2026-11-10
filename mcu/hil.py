@@ -124,7 +124,6 @@ def run_d1(link, board, name, d):
 
 def run_ds(link, board):
     import run as E4
-    import run_d2 as R2
     d = 16
     out = []
     E4.D = None
@@ -156,7 +155,11 @@ def run_ds(link, board):
             link.send(b"B" + bytes([len(chunk)]) + f32bytes(X[chunk]))
             got += [int(ch) for ch in link.expect("P,")[2:]]
         ex = expected()
-        acc_ref = ex["ds"][f"{i}->{j}"] if ex else R2.ds_f32_job((d, 16, seed, (i, j)))["acc_fused32"]
+        if ex:
+            acc_ref = ex["ds"][f"{i}->{j}"]
+        else:
+            import run_d2 as R2   # needs a C compiler for the float32 replica
+            acc_ref = R2.ds_f32_job((d, 16, seed, (i, j)))["acc_fused32"]
         out.append(dict(kind="ds_fused", pair=[i, j], n=len(ev), init_ram_bytes=init_bytes,
                         accuracy_board=float(np.mean(np.array(got) == y[ev])),
                         accuracy_host_fused32=acc_ref, **stats(link)))
@@ -230,7 +233,11 @@ def main():
     results += run_extractor(link, a.board, 3)
     link.s.close()
     (a.out / "raw.log").write_text("\n".join(log) + "\n", encoding="utf-8")
-    git = subprocess.run(["git", "rev-parse", "HEAD"], cwd=HERE, capture_output=True, text=True).stdout.strip()
+    try:
+        git = subprocess.run(["git", "rev-parse", "HEAD"], cwd=HERE, capture_output=True, text=True).stdout.strip()
+    except OSError:
+        git = ""
+    git = git or "not a git checkout (see source hashes)"
     build = HERE / ".pio" / "build" / env
     images = {n: sha(build / n) for n in ("firmware.elf", "firmware.hex", "firmware.bin") if (build / n).exists()}
     ok_d1 = all(r["agree"] == r["n"] for r in results if r["kind"] == "d1_stream")

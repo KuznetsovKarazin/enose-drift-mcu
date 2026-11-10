@@ -69,26 +69,32 @@ static float *xin = xbuf;
 static uint8_t rbyte() { int c; while ((c = rd()) < 0) {} return (uint8_t)c; }
 static void rbytes(void *dst, size_t n) { uint8_t *p = (uint8_t *)dst; for (size_t i = 0; i < n; ++i) p[i] = rbyte(); }
 
-// ---------------------------------------------------------------- stack painting
+// ---------------------------------------------------------------- stack depth
+// Reported value: peak depth of the whole stack in bytes, measured from the top of the
+// stack, since the last 'I' or 'X' command (AVR, host) or since start (ESP32 loop task).
 #if defined(__AVR__)
 extern char __heap_start, *__brkval;
 static uint8_t *stack_low() { return (uint8_t *)(__brkval ? __brkval : &__heap_start) + 16; }
-#elif defined(HIL_HOST)
-static uint8_t *stack_low() { volatile uint8_t m; return (uint8_t *)&m - 32768; }
-#else
-static uint8_t *stack_low() { return (uint8_t *)pxTaskGetStackStart(NULL) + 64; }
-#endif
 static uint8_t *paint_top;
-static void __attribute__((noinline)) paint() {
-  volatile uint8_t marker; uint8_t *sp = (uint8_t *)&marker;
-  paint_top = sp - 96;
+static void __attribute__((noinline)) paint() {     // paint free stack below the caller with 0xA5
+  volatile uint8_t marker; paint_top = (uint8_t *)&marker - 16;
   for (uint8_t *p = stack_low(); p < paint_top; ++p) *p = 0xA5;
 }
-static long __attribute__((noinline)) stack_peak() {   // bytes below the painting point that were written
+static long __attribute__((noinline)) stack_peak() {
   uint8_t *p = stack_low();
-  while (p < paint_top && *p == 0xA5) ++p;
-  return (long)(paint_top - p);
+  while (p < paint_top && *p == 0xA5) ++p;          // lowest address written since paint()
+  return (long)((uint8_t *)RAMEND + 1 - p);
 }
+#elif defined(HIL_HOST)
+static uint8_t *paint_top;
+static void paint() { volatile uint8_t m; paint_top = (uint8_t *)&m; }
+static long stack_peak() { return 0; }            // not measured on the host build
+#else
+static void paint() {}
+static long stack_peak() {                        // FreeRTOS high-water mark of the loop task (bytes on ESP-IDF)
+  return (long)getArduinoLoopTaskStackSize() - (long)uxTaskGetStackHighWaterMark(NULL);
+}
+#endif
 
 // ---------------------------------------------------------------- method state
 struct Hil {
