@@ -41,6 +41,7 @@ def _lib():
         "f_pre_many": [_fp, _fp, _fp, C.c_int, C.c_int, _fp],
         "f_argmax_many": [_fp, _fp, C.c_int, C.c_int, C.c_int, _ip],
         "f_ewma_run": [_fp, C.c_int, C.c_int, _fp, _fp, C.c_float, _fp, C.c_int, _fp, _ip],
+        "f_ext_run": [_fp, _fp, C.c_int, C.c_float, _fp],
     }
     for name, args in sig.items():
         fn = getattr(lib, name); fn.argtypes = args

@@ -1,0 +1,28 @@
+\begin{table}[t]
+\caption{RAM of the Firmware Configurations in Bytes (float32)}
+\label{tab:ram}\centering\scriptsize\setlength{\tabcolsep}{2pt}
+\begin{tabular}{l r r r r r r r}\toprule
+Configuration & $d$ & Head & State & Persist. & Scratch & Calib. & Peak\\\midrule
+M0 Static head & 16 & -- & -- & 0 & 64 & -- & 64\\
+M1 EWMA & 16 & -- & 132 & 132 & 64 & -- & 196\\
+M5 NLMS & 16 & 408 & 4 & 412 & 64 & -- & 476\\
+M6 RLS & 16 & 408 & 1\,160 & 1\,568 & 132 & -- & 1\,700\\
+M7 Block OLS & 16 & 408 & 1\,300 & 1\,708 & 64 & 2\,044 & 3\,816\\
+M1+M5 EWMA + NLMS & 16 & 408 & 136 & 544 & 64 & -- & 608\\
+M1+M7 EWMA + OLS & 16 & 408 & 1\,432 & 1\,840 & 64 & 2\,044 & 3\,948\\
+M0 Static head & 128 & -- & -- & 0 & 512 & -- & 512\\
+M1 EWMA & 128 & -- & 1\,028 & 1\,028 & 512 & -- & 1\,540\\
+M5 NLMS & 128 & 3\,096 & 4 & 3\,100 & 512 & -- & 3\,612\\
+M6 RLS & 128 & 3\,096 & 66\,568 & 69\,664 & 1\,028 & -- & 70\,692$^*$\\
+M7 Block OLS & 128 & 3\,096 & 10\,260 & 13\,356 & 512 & 70\,140 & 84\,008$^*$\\
+M1+M5 EWMA + NLMS & 128 & 3\,096 & 1\,032 & 4\,128 & 512 & -- & 4\,640\\
+M1+M7 EWMA + OLS & 128 & 3\,096 & 11\,288 & 14\,384 & 512 & 70\,140 & 85\,036$^*$\\
+\midrule
+M8 DS, map & 16 & -- & 1\,088 & 1\,088 & 128 & 3\,204 & 4\,420\\
+M8 DS, fused & 16 & 272 & -- & 272 & 64 & 4\,292 & 4\,628\\
+M8 DS, map & 64 & -- & 16\,640 & 16\,640 & 512 & 25\,092 & 42\,244$^*$\\
+M8 DS, fused & 64 & 1\,040 & -- & 1\,040 & 256 & 41\,732 & 43\,028$^*$\\
+\bottomrule
+\multicolumn{8}{p{0.97\columnwidth}}{\scriptsize Head: classifier in RAM because the method modifies it (otherwise it stays in flash). Persist.: persistent RAM, head plus state, kept between samples. Scratch: feature vector of the current sample (and the RLS gain or the DS output). Calib.: temporary memory at the end of a session (Gram matrix, solution, targets, transfer pairs). D1: $C=6$, $k=20$; D2: $C=4$, $k=16$. $^*$Exceeds the 7\,392~B of SRAM left by the firmware on the Mega2560.}
+\end{tabular}
+\end{table}

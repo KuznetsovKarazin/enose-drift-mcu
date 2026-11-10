@@ -2,16 +2,18 @@
 \caption{Calibration Transfer Between Twin Boards: Mean (Worst) Accuracy Over 19 Board Pairs, $d=16$}
 \label{tab:e4}\centering\scriptsize\setlength{\tabcolsep}{2pt}
 \begin{tabular}{l rrrr r}\toprule
-Method & $k=0$ & 4 & 8 & 16 & State (B)\\\midrule
+Method & $k=0$ & 4 & 8 & 16 & RAM (B)\\\midrule
 M0 static & 0.831 (0.65) & 0.831 (0.66) & 0.832 (0.67) & 0.835 (0.70) & 0\\
 M1 EWMA & 0.895 (0.71) & 0.899 (0.70) & 0.900 (0.71) & 0.907 (0.71) & 132\\
 M4 affine & -- & 0.889 (0.74) & 0.896 (0.73) & 0.903 (0.73) & 128\\
 M9 chan. DS & -- & 0.891 (0.74) & 0.898 (0.74) & 0.904 (0.74) & 192\\
-M8 DS & -- & 0.878 (0.75) & 0.925 (0.87) & 0.955 (0.92) & 1\,088\\
-M5 NLMS & -- & 0.845 (0.72) & 0.855 (0.72) & 0.878 (0.72) & 4\\
-M6 RLS & -- & 0.878 (0.72) & 0.902 (0.74) & 0.933 (0.85) & 1\,160\\
-M7 block OLS & -- & 0.848 (0.70) & 0.876 (0.74) & 0.904 (0.79) & 1\,040\\
+M8 DS & -- & 0.878 (0.75) & 0.925 (0.87) & 0.955 (0.92) & 272\\
+M5 NLMS & -- & 0.845 (0.72) & 0.855 (0.72) & 0.878 (0.72) & 276\\
+M6 RLS & -- & 0.878 (0.72) & 0.902 (0.74) & 0.933 (0.85) & 1\,432\\
+M7 block OLS & -- & 0.848 (0.70) & 0.876 (0.74) & 0.904 (0.79) & 1\,312\\
 \midrule
-M8 DS, $d=64$ & -- & 0.890 (0.75) & 0.919 (0.77) & 0.946 (0.87) & 16\,640\\
-\bottomrule\end{tabular}
+M8 DS, $d=64$ & -- & 0.890 (0.75) & 0.919 (0.77) & 0.946 (0.87) & 1\,040\\
+\bottomrule
+\multicolumn{6}{p{0.95\columnwidth}}{\scriptsize $k$: transfer pairs (M4, M8, M9) or labelled slave references (M5--M7); M1 does not use them. RAM: bytes kept between samples; M8 is counted fused into the head ($4C(d+1)$~B), the separate map takes $4d(d+1)$~B.}
+\end{tabular}
 \end{table}

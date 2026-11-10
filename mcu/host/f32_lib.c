@@ -25,3 +25,10 @@ void f_ewma_run(const float *Z, int n, int d, float *m, float *v, float a, const
     out[s] = ek_argmax(zbuf, W, d, C, 0);
   }
 }
+/* Streaming extractor over a complete recording: t (n), r (n x 8, row-major). */
+void f_ext_run(const float *t, const float *r, int n, float t_base, float *f) {
+  EkExtractor e;
+  ek_ext_init(&e, t_base);
+  for (int s = 0; s < n; ++s) ek_ext_push(&e, t[s], r + s * EK_CH);
+  ek_ext_features(&e, f);
+}

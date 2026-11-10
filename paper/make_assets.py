@@ -1,6 +1,7 @@
-"""Tables, figures and paired tests for the manuscript.
+"""Tables and figures for the manuscript (revision 1).
 
-Reads only frozen results under results/ (E1-E5); refits nothing.
+Reads only archived results under results/ (E1-E5 frozen, E6 post hoc); refits nothing.
+Statistics are computed by experiments/e6/analyse.py (results/e6_20261110/summary.json).
 Usage: python paper/make_assets.py
 """
 from __future__ import annotations
@@ -15,7 +16,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
-from scipy.stats import wilcoxon  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 P = ROOT / "paper"
@@ -46,22 +46,136 @@ def e2_batch_means():
     return {key: np.array([np.mean(v[b]) for b in sorted(v)]) for key, v in acc.items()}
 
 
-def table_e2(e2):
-    meth = ["M0", "M1", "M5", "M6", "M7", "M1+M5", "M1+M7"]
-    lines = [r"\begin{table*}[!t]", r"\caption{Drift Compensation on the Gas Sensor Array Drift Data: Accuracy (Batches 3--10, 20 Seeds) and Persistent State}",
-             r"\label{tab:e2}\centering\footnotesize", r"\begin{tabular}{l rrrr r @{\hspace{14pt}} rrrr r}\toprule",
-             r" & \multicolumn{5}{c}{$d=16$} & \multicolumn{5}{c}{$d=128$}\\\cmidrule(lr){2-6}\cmidrule(lr){7-11}",
-             r"Method & $k=0$ & 1 & 5 & 20 & State (B) & $k=0$ & 1 & 5 & 20 & State (B)\\\midrule"]
+MUTABLE = {"M5", "M6", "M7", "M1+M5", "M1+M7"}   # methods that modify the head, which must then live in RAM
+E6 = R / "e6_20261110"
+
+
+def head_bytes(d, C):
+    return 4 * C * (d + 1)
+
+
+def persistent_ram(m, d, C, state):
+    """Bytes kept in RAM between samples: adaptation state plus the head if the method modifies it.
+    DS (M8) is counted fused into the head (W' = F W), which replaces the map."""
+    if m == "M8":
+        return head_bytes(d, C)
+    return state + (head_bytes(d, C) if m in MUTABLE else 0)
+
+
+def load_summary():
+    return json.loads((E6 / "summary.json").read_text())
+
+
+def table_e2(e2, S):
+    meth = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M1+M5", "M1+M7"]
+    f1 = {(r["d"], r["k"], r["method"]): r["macro_f1"] for r in S["e2_stats"]["macro_f1"]}
+    lines = [r"\begin{table*}[!t]", r"\caption{Drift Compensation on the Gas Sensor Array Drift Data: Accuracy (Batches 3--10, 20 Seeds), Macro-F1 at $k=20$ and Persistent RAM}",
+             r"\label{tab:e2}\centering\footnotesize", r"\begin{tabular}{l rrrr r r @{\hspace{14pt}} rrrr r r}\toprule",
+             r" & \multicolumn{6}{c}{$d=16$} & \multicolumn{6}{c}{$d=128$}\\\cmidrule(lr){2-7}\cmidrule(lr){8-13}",
+             r"Method & $k=0$ & 1 & 5 & 20 & F1$_{20}$ & RAM (B) & $k=0$ & 1 & 5 & 20 & F1$_{20}$ & RAM (B)\\\midrule"]
     for m in meth:
-        cells = [NAMES[m]]
+        cells = [f"{m} {NAMES[m]}"]
         for d in (16, 128):
             for k in (0, 1, 5, 20):
                 r = e2.get((d, k, m))
                 cells.append(f"{float(r['accuracy_b3_10']):.3f}" if r else "--")
-            cells.append(fmt_int(e2[(d, 20, m)]["state_bytes"]))
+            cells.append(f"{f1[(d, 20, m)]:.3f}")
+            cells.append(fmt_int(persistent_ram(m, d, 6, int(e2[(d, 20, m)]["state_bytes"]))))
         lines.append(" & ".join(cells) + r"\\")
-    lines += [r"\bottomrule\end{tabular}", r"\end{table*}"]
+    lines += [r"\bottomrule", r"\multicolumn{13}{p{0.95\textwidth}}{\scriptsize $k$: labelled references per batch (one calibration session). F1$_{20}$: macro-F1 at $k=20$. RAM: bytes kept between samples in float32, i.e., the adaptation state plus the head (408~B at $d=16$, 3\,096~B at $d=128$) for methods that modify it (M5--M7 and combinations); other heads can stay in flash. Unsupervised methods (M1, M2) do not use the references. M3 and M4 need at least one reference.}",
+              r"\end{tabular}", r"\end{table*}"]
     (P / "tables/e2.tex").write_text("\n".join(lines) + "\n")
+
+
+def table_stats(S):
+    lab = lambda x: f"{x[2]}" + (f" ($d={x[0]}$, $k={x[1]}$)")
+    lines = [r"\begin{table}[t]", r"\caption{Paired Differences in Accuracy}", r"\label{tab:stats}\centering\scriptsize\setlength{\tabcolsep}{2pt}",
+             r"\begin{tabular}{l r r l}\toprule", r"Comparison & Mean & Better & 95\% interval\\\midrule",
+             r"\multicolumn{4}{l}{\emph{E2, drift stream: units are the 8 test batches}}\\"]
+    for x in S["e2_stats"]["differences"]:
+        a, b = x["a"], x["b"]
+        lines.append(f"{a[2]} vs {b[2]}, $d={a[0]}$, $k={a[1]}$ & {x['mean_diff']:+.3f} & {x['batches_better']}/{x['n_batches']} & "
+                     f"[{x['min_batch_diff']:+.2f}, {x['max_batch_diff']:+.2f}]$^a$\\\\")
+    lines.append(r"\multicolumn{4}{l}{\emph{E4, transfer: units are the 19 board pairs}}\\")
+    for x in S["e4_stats"]:
+        a, b = x["a"], x["b"]
+        name = f"{a[2]} $k={a[1]}$ vs {b[2]} $k={b[1]}$" if a[0] == b[0] else f"{a[2]} $d={a[0]}$ vs $d={b[0]}$, $k={a[1]}$"
+        lo, hi = x["ci_board_bootstrap"]
+        lines.append(f"{name} & {x['mean_diff']:+.3f} & {x['pairs_better']}/{x['n_pairs']} & [{lo:+.3f}, {hi:+.3f}]$^b$\\\\")
+    lines += [r"\bottomrule", r"\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize $^a$Range of the per-batch differences; an interval over the 20 reference draws would only describe this one stream and is given in the repository. $^b$Percentile interval of a cluster bootstrap that resamples the five boards (10\,000 replicates). Both comparisons in a row use identical test records.}",
+              r"\end{tabular}", r"\end{table}"]
+    (P / "tables/stats.tex").write_text("\n".join(lines) + "\n")
+
+
+def table_scenarios(S):
+    sc = {(r["method"], r["d"], r["k"], r["order"], r["refs"]): r for r in S["d1"]["scenarios"]}
+    cols = [("shuffled", "uniform"), ("grouped", "uniform"), ("shuffled", "one_gas"), ("grouped", "one_gas")]
+    lines = [r"\begin{table}[t]", r"\caption{Drift Stream Under Less Favourable Calibration ($k=20$, Accuracy, Batches 3--10)}",
+             r"\label{tab:scen}\centering\scriptsize\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{l r rrrr}\toprule",
+             r" & & \multicolumn{2}{c}{References of all gases} & \multicolumn{2}{c}{References of one gas}\\\cmidrule(lr){3-4}\cmidrule(lr){5-6}",
+             r"Method & $d$ & shuffled & gas blocks & shuffled & gas blocks\\\midrule"]
+    for d in (16, 128):
+        for m in ("M1", "M5", "M6", "M7", "M1+M5"):
+            cells = [f"{m} {SHORT.get(m, NAMES[m])}", str(d)]
+            for o, rf in cols:
+                key = (m, d, 20 if m != "M1" else 0, o, rf) if rf == "uniform" and m == "M1" else (m, d, 20, o, rf)
+                r = sc.get(key)
+                cells.append(f"{r['accuracy'][0]:.3f}" if r else "--")
+            lines.append(" & ".join(cells) + r"\\")
+        if d == 16:
+            lines.append(r"\midrule")
+    lines += [r"\bottomrule", r"\multicolumn{6}{p{0.95\columnwidth}}{\scriptsize First column: protocol of E2. Gas blocks: within each batch the recordings arrive grouped by gas in a random gas order. One gas: all $k$ references of a session come from one randomly chosen gas. 20 seeds; the 95\% intervals over seeds are at most $\pm0.036$ and are given in the repository.}",
+              r"\end{tabular}", r"\end{table}"]
+    (P / "tables/scen.tex").write_text("\n".join(lines) + "\n")
+
+
+def ram_rows():
+    """RAM of the firmware configurations, float32 (mcu/src/hil/hil_main.cpp follows the same layout)."""
+    rows = []
+    def add(ds, m, label, d, C, k, state, scratch, calib):
+        persistent = state + (head_bytes(d, C) if m in MUTABLE else 0)
+        rows.append(dict(data=ds, method=m, label=label, d=d, head=head_bytes(d, C) if m in MUTABLE or m.startswith("M8f") else 0,
+                         state=state, scratch=scratch, calib=calib, persistent=persistent if not m.startswith("M8f") else head_bytes(d, C),
+                         peak=(persistent if not m.startswith("M8f") else head_bytes(d, C)) + scratch + calib))
+    for d in (16, 128):
+        n, C, k = d + 1, 6, 20
+        z = 4 * d
+        fit = 4 * n * n + 4 * n * C + 4 * k * C    # Gram matrix, solution, one-hot targets
+        add("D1", "M0", "Static head", d, C, 0, 0, z, 0)
+        add("D1", "M1", "EWMA", d, C, 0, 8 * d + 4, z, 0)
+        add("D1", "M5", "NLMS", d, C, 0, 4, z, 0)
+        add("D1", "M6", "RLS", d, C, 0, 4 * n * n + 4, z + 4 * n, 0)
+        add("D1", "M7", "Block OLS", d, C, k, k * (4 * d + 1), z, fit)
+        add("D1", "M1+M5", "EWMA + NLMS", d, C, 0, 8 * d + 8, z, 0)
+        add("D1", "M1+M7", "EWMA + OLS", d, C, k, 8 * d + 4 + k * (4 * d + 1), z, fit)
+    for d in (16, 64):
+        n, C, k = d + 1, 4, 16
+        z = 4 * d
+        add("D2", "M8", "DS, map", d, C, k, 4 * n * d, 2 * z, 8 * k * d + 4 * n * n)
+        add("D2", "M8f", "DS, fused", d, C, k, 0, z, 8 * k * d + 4 * n * n + 4 * n * d)
+    return rows
+
+
+MEGA_FREE = 8192 - 800   # SRAM minus the static use of the HIL firmware outside its buffers (6\,036 B - 5\,236 B)
+
+
+def table_ram():
+    rows = ram_rows()
+    lines = [r"\begin{table}[t]", r"\caption{RAM of the Firmware Configurations in Bytes (float32)}", r"\label{tab:ram}\centering\scriptsize\setlength{\tabcolsep}{2pt}",
+             r"\begin{tabular}{l r r r r r r r}\toprule", r"Configuration & $d$ & Head & State & Persist. & Scratch & Calib. & Peak\\\midrule"]
+    last = None
+    for r in rows:
+        if last and r["data"] != last:
+            lines.append(r"\midrule")
+        last = r["data"]
+        peak = fmt_int(r["peak"]) + ("" if r["peak"] <= MEGA_FREE else "$^*$")
+        lines.append(f"{r['method'].replace('M8f', 'M8')} {r['label']} & {r['d']} & {fmt_int(r['head']) if r['head'] else '--'} & {fmt_int(r['state']) if r['state'] else '--'} & "
+                     f"{fmt_int(r['persistent'])} & {fmt_int(r['scratch'])} & {fmt_int(r['calib']) if r['calib'] else '--'} & {peak}\\\\")
+    lines += [r"\bottomrule", r"\multicolumn{8}{p{0.97\columnwidth}}{\scriptsize Head: classifier in RAM because the method modifies it (otherwise it stays in flash). Persist.: persistent RAM, head plus state, kept between samples. Scratch: feature vector of the current sample (and the RLS gain or the DS output). Calib.: temporary memory at the end of a session (Gram matrix, solution, targets, transfer pairs). D1: $C=6$, $k=20$; D2: $C=4$, $k=16$. $^*$Exceeds the 7\,392~B of SRAM left by the firmware on the Mega2560.}",
+              r"\end{tabular}", r"\end{table}"]
+    (P / "tables/ram.tex").write_text("\n".join(lines) + "\n")
+    (P / "ram.json").write_text(json.dumps(rows, indent=1))
+    return rows
 
 
 SHORT = {"M0": "static", "M1": "EWMA", "M4": "affine", "M9": "chan. DS", "M8": "DS", "M5": "NLMS", "M6": "RLS", "M7": "block OLS"}
@@ -75,18 +189,19 @@ def table_e4(e4):
     meth = ["M0", "M1", "M4", "M9", "M8", "M5", "M6", "M7"]
     lines = [r"\begin{table}[t]", r"\caption{Calibration Transfer Between Twin Boards: Mean (Worst) Accuracy Over 19 Board Pairs, $d=16$}",
              r"\label{tab:e4}\centering\scriptsize\setlength{\tabcolsep}{2pt}", r"\begin{tabular}{l rrrr r}\toprule",
-             r"Method & $k=0$ & 4 & 8 & 16 & State (B)\\\midrule"]
+             r"Method & $k=0$ & 4 & 8 & 16 & RAM (B)\\\midrule"]
     for m in meth:
         cells = [f"{m} {SHORT.get(m, NAMES[m])}"]
         for k in (0, 4, 8, 16):
             r = e4.get((16, k, m))
             cells.append(f"{r['accuracy']:.3f} ({r['worst_pair']:.2f})" if r else "--")
-        cells.append(fmt_int(e4[(16, 16, m)]["state_bytes"]))
+        cells.append(fmt_int(persistent_ram(m, 16, 4, e4[(16, 16, m)]["state_bytes"])))
         lines.append(" & ".join(cells) + r"\\")
     r64 = e4[(64, 16, "M8")]
     lines += [r"\midrule", f"M8 DS, $d=64$ & -- & {e4[(64, 4, 'M8')]['accuracy']:.3f} ({e4[(64, 4, 'M8')]['worst_pair']:.2f}) & "
-              f"{e4[(64, 8, 'M8')]['accuracy']:.3f} ({e4[(64, 8, 'M8')]['worst_pair']:.2f}) & {r64['accuracy']:.3f} ({r64['worst_pair']:.2f}) & {fmt_int(r64['state_bytes'])}\\\\",
-              r"\bottomrule\end{tabular}", r"\end{table}"]
+              f"{e4[(64, 8, 'M8')]['accuracy']:.3f} ({e4[(64, 8, 'M8')]['worst_pair']:.2f}) & {r64['accuracy']:.3f} ({r64['worst_pair']:.2f}) & {fmt_int(persistent_ram('M8', 64, 4, 0))}\\\\",
+              r"\bottomrule", r"\multicolumn{6}{p{0.95\columnwidth}}{\scriptsize $k$: transfer pairs (M4, M8, M9) or labelled slave references (M5--M7); M1 does not use them. RAM: bytes kept between samples; M8 is counted fused into the head ($4C(d+1)$~B), the separate map takes $4d(d+1)$~B.}",
+              r"\end{tabular}", r"\end{table}"]
     (P / "tables/e4.tex").write_text("\n".join(lines) + "\n")
 
 
@@ -123,14 +238,13 @@ def load_e5():
 
 
 def table_mcu(t):
-    lines = [r"\begin{table*}[!t]", r"\caption{Measured Time per Call on the Boards (Median of 20 Timings in Two Sessions, $\mu$s) and Persistent State}",
-             r"\label{tab:mcu}\centering\footnotesize", r"\begin{tabular}{l l r r rrr}\toprule",
-             r"Kernel & One call & State (B) & Host accuracy & Mega2560 & ESP32-C3 & ESP32-S3\\\midrule"]
+    lines = [r"\begin{table*}[!t]", r"\caption{Measured Time per Call on the Boards (Median of 20 Timings in Two Sessions, $\mu$s) and Host Accuracy}",
+             r"\label{tab:mcu}\centering\footnotesize", r"\begin{tabular}{l l r rrr}\toprule",
+             r"Kernel & One call & Host accuracy & Mega2560 & ESP32-C3 & ESP32-S3\\\midrule"]
     for key, name, unit in MCU_ROWS:
         s3 = t[("ESP32-S3", key)]
         acc = s3["host_accuracy"]
-        sb = int(float(s3["state_bytes"])) if key != "extract" else None
-        cells = [name, unit, fmt_int(sb) if sb is not None else "426/428", f"{float(acc):.3f}" if acc else "--"]
+        cells = [name, unit, f"{float(acc):.3f}" if acc else "--"]
         for b in ("Mega2560", "ESP32-C3", "ESP32-S3"):
             r = t[(b, key)]
             if r["status"] != "measured":
@@ -139,42 +253,9 @@ def table_mcu(t):
                 v = float(r["us_median"])
                 cells.append(fmt_int(round(v)) if v >= 1000 else f"{v:.1f}" if v >= 10 else f"{v:.2f}")
         lines.append(" & ".join(cells) + r"\\")
-    lines += [r"\bottomrule\end{tabular}", r"\end{table*}"]
+    lines += [r"\bottomrule", r"\multicolumn{6}{p{0.62\textwidth}}{\scriptsize Kernels are timed on fixtures of real samples stored in flash (E5); host accuracy is that of the same configuration in E2 ($k=20$) or E4 ($k=16$). RAM of each configuration is given in Table~\ref{tab:ram}.}",
+              r"\end{tabular}", r"\end{table*}"]
     (P / "tables/mcu.tex").write_text("\n".join(lines) + "\n")
-
-
-def holm(ps):
-    order = np.argsort(ps)
-    adj = np.empty(len(ps))
-    run = 0.0
-    for i, j in enumerate(order):
-        run = max(run, min(1.0, (len(ps) - i) * ps[j]))
-        adj[j] = run
-    return adj
-
-
-def tests(e2b, e4):
-    fam = []
-    def add(label, a, b):
-        res = wilcoxon(a, b, alternative="two-sided", method="exact" if len(a) <= 25 else "auto")
-        fam.append(dict(test=label, n=len(a), median_diff=float(np.median(np.asarray(a) - np.asarray(b))),
-                        wins=int(np.sum(np.asarray(a) > np.asarray(b))), p=float(res.pvalue)))
-    add("E2 d16 k0 M1 vs M0", e2b[(16, 0, "M1")], e2b[(16, 0, "M0")])
-    add("E2 d128 k0 M1 vs M0", e2b[(128, 0, "M1")], e2b[(128, 0, "M0")])
-    add("E2 d128 k20 M5 vs M0", e2b[(128, 20, "M5")], e2b[(128, 20, "M0")])
-    add("E2 d16 k20 M7 vs M6", e2b[(16, 20, "M7")], e2b[(16, 20, "M6")])
-    add("E2 d128 k20 M6 vs M5", e2b[(128, 20, "M6")], e2b[(128, 20, "M5")])
-    pairs = sorted(e4[(16, 16, "M8")]["per_pair"])
-    pp = lambda d, k, m: np.array([e4[(d, k, m)]["per_pair"][p] for p in pairs])
-    add("E4 d16 k0 M1 vs M0", pp(16, 0, "M1"), pp(16, 0, "M0"))
-    add("E4 d16 k16 M8 vs M1", pp(16, 16, "M8"), pp(16, 0, "M1"))
-    add("E4 k16 M8 d16 vs d64", pp(16, 16, "M8"), pp(64, 16, "M8"))
-    add("E4 d16 k16 M8 vs M6", pp(16, 16, "M8"), pp(16, 16, "M6"))
-    adj = holm(np.array([f["p"] for f in fam]))
-    for f, a in zip(fam, adj):
-        f["p_holm"] = float(a)
-    (P / "stats.json").write_text(json.dumps(fam, indent=1))
-    return fam
 
 
 def fig_frontier(e2, e4):
@@ -183,25 +264,26 @@ def fig_frontier(e2, e4):
            "M8": "#ff7f0e", "M9": "#17becf", "M1+M5": "#bcbd22", "M1+M7": "#e377c2"}
     def panel(ax, pts, title, small, big, label_keys):
         for (m, d, acc, sb) in pts:
-            ax.scatter(max(sb, 2), acc, color=col[m], marker="o" if d == small else "s", s=24, zorder=3,
+            ax.scatter(max(sb, 1), acc, color=col[m], marker="o" if d == small else "s", s=24, zorder=3,
                        edgecolor="k", linewidth=0.3)
             if (m, d) in label_keys:
-                ax.annotate(f"{m}", (max(sb, 2), acc), xytext=(4, -3), textcoords="offset points", fontsize=6.3)
+                ax.annotate(f"{m}", (max(sb, 1), acc), xytext=(4, -3), textcoords="offset points", fontsize=6.3)
         ax.axvline(8192, color="k", lw=0.6, ls="--")
-        ax.set_xscale("log"); ax.set_xlabel("Persistent state (bytes, log scale; 2 B = none)")
+        ax.set_xscale("log"); ax.set_xlabel("Persistent RAM (bytes, log scale)")
+        ax.set_xticks([1, 10, 100, 1000, 10000, 100000]); ax.set_xticklabels(["0", "10", "100", "1k", "10k", "100k"])
         ax.set_title(title, fontsize=8); ax.grid(alpha=0.25, lw=0.4)
         ax.scatter([], [], marker="o", color="w", edgecolor="k", label=f"$d={small}$")
         ax.scatter([], [], marker="s", color="w", edgecolor="k", label=f"$d={big}$")
-    pts = [(m, d, float(e2[(d, 20, m)]["accuracy_b3_10"]), int(e2[(d, 20, m)]["state_bytes"]))
+    pts = [(m, d, float(e2[(d, 20, m)]["accuracy_b3_10"]), persistent_ram(m, d, 6, int(e2[(d, 20, m)]["state_bytes"])))
            for d in (16, 128) for m in ("M0", "M1", "M5", "M6", "M7", "M1+M5", "M1+M7")]
     panel(axes[0], pts, "(a) Drift over 36 months, $k=20$ references per batch", 16, 128,
           {("M0", 16), ("M0", 128), ("M1", 128), ("M5", 128), ("M6", 128), ("M7", 16), ("M5", 16), ("M6", 16), ("M7", 128)})
-    axes[0].set_ylabel("Accuracy"); axes[0].set_xlim(1.5, 2.5e5)
-    pts = [(m, d, e4[(d, 16, m)]["accuracy"], e4[(d, 16, m)]["state_bytes"])
+    axes[0].set_ylabel("Accuracy"); axes[0].set_xlim(0.7, 2.5e5)
+    pts = [(m, d, e4[(d, 16, m)]["accuracy"], persistent_ram(m, d, 4, e4[(d, 16, m)]["state_bytes"]))
            for d in (16, 64) for m in ("M0", "M1", "M4", "M5", "M6", "M7", "M8", "M9")]
     panel(axes[1], pts, "(b) Board-to-board transfer, $k=16$ pairs", 16, 64,
           {("M0", 16), ("M5", 16), ("M8", 16), ("M8", 64), ("M6", 16), ("M6", 64), ("M1", 64)})
-    axes[1].set_xlim(1.5, 6e4)
+    axes[1].set_xlim(0.7, 6e4)
     for ax in axes:
         ax.text(8192 * 1.1, ax.get_ylim()[0] + 0.01, "8 kB SRAM\n(Mega2560)", fontsize=6, va="bottom")
     handles = [plt.Line2D([], [], marker="o", ls="", color=col[m], markeredgecolor="k", markeredgewidth=0.3,
@@ -236,18 +318,20 @@ def fig_timing(t):
 
 def fig_graphical(e2, e4, t):
     fig, ax = plt.subplots(figsize=(3.0, 1.8))
-    pts = [("Static, 0 B", 0.498, 2, "#777777"), ("EWMA, 1 kB, 0 labels", 0.614, 1028, "#1f77b4"),
-           ("NLMS, 4 B", 0.772, 4, "#2ca02c"), ("RLS d=16, 1.2 kB", 0.876, 1160, "#d62728"),
-           ("RLS d=128, 66.6 kB", 0.923, 66568, "#d62728"), ("DS board transfer, 1.1 kB", 0.955, 1088, "#ff7f0e")]
-    offs = {"RLS d=128, 66.6 kB": (-40, -10), "DS board transfer, 1.1 kB": (-100, -2), "RLS d=16, 1.2 kB": (4, -10)}
+    pts = [("Static, 0 B", 0.498, 1, "#777777"), ("EWMA, 1.0 kB, no labels", 0.614, 1028, "#1f77b4"),
+           ("NLMS, 3.1 kB", 0.772, 3100, "#2ca02c"), ("RLS d=16, 1.6 kB", 0.876, 1568, "#d62728"),
+           ("RLS d=128, 69.7 kB", 0.923, 69664, "#d62728"), ("DS fused, 272 B (twin boards)", 0.955, 272, "#ff7f0e")]
+    offs = {"RLS d=128, 69.7 kB": (-36, -14), "DS fused, 272 B (twin boards)": (-40, 6), "RLS d=16, 1.6 kB": (-78, -3),
+            "NLMS, 3.1 kB": (5, -4), "EWMA, 1.0 kB, no labels": (5, -4)}
     for lab, a, s, c in pts:
         ax.scatter(s, a, color=c, s=26, edgecolor="k", linewidth=0.3, zorder=3)
         ax.annotate(lab, (s, a), xytext=offs.get(lab, (4, -3)), textcoords="offset points", fontsize=6.5)
     ax.axvspan(8192, 3e5, color="#f2c6c6", alpha=0.5, lw=0)
     ax.text(9500, 0.47, "does not fit\nMega2560", fontsize=6.3)
-    ax.set_xscale("log"); ax.set_xlim(1.5, 3e5); ax.set_ylim(0.45, 1.0)
-    ax.set_xlabel("Persistent state, bytes"); ax.set_ylabel("Accuracy")
-    ax.set_title("Accuracy per byte of on-device state", fontsize=7)
+    ax.set_xscale("log"); ax.set_xlim(0.7, 3e5); ax.set_ylim(0.45, 1.02)
+    ax.set_xticks([1, 100, 10000]); ax.set_xticklabels(["0", "100", "10k"])
+    ax.set_xlabel("Persistent RAM, bytes"); ax.set_ylabel("Accuracy")
+    ax.set_title("Accuracy versus RAM on the device", fontsize=7)
     ax.grid(alpha=0.25, lw=0.4)
     fig.savefig(P / "figures/gagraphic_inline.pdf")
     fig.savefig(P / "figures/gagraphic.png", dpi=300)
@@ -256,12 +340,12 @@ def fig_graphical(e2, e4, t):
 
 def main():
     (P / "tables").mkdir(exist_ok=True); (P / "figures").mkdir(exist_ok=True)
-    e2 = load_e2(); e4 = load_e4(); t = load_e5()
-    table_e2(e2); table_e4(e4); table_e3(); table_mcu(t)
-    fam = tests(e2_batch_means(), e4)
+    e2 = load_e2(); e4 = load_e4(); t = load_e5(); S = load_summary()
+    table_e2(e2, S); table_e4(e4); table_e3(); table_mcu(t)
+    table_stats(S); table_scenarios(S); rows = table_ram()
     fig_frontier(e2, e4); fig_timing(t); fig_graphical(e2, e4, t)
-    for f in fam:
-        print(f"{f['test']:28s} n={f['n']:2d} wins={f['wins']:2d} med={f['median_diff']:+.3f} p={f['p']:.4f} holm={f['p_holm']:.4f}")
+    for r in rows:
+        print(r)
 
 
 if __name__ == "__main__":

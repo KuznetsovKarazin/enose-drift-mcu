@@ -5,6 +5,7 @@ Writes summary.json in that folder and prints the key tables.
 """
 from __future__ import annotations
 
+import gzip
 import json
 import sys
 from collections import defaultdict
@@ -28,7 +29,7 @@ def boot_ci(x, rng, reps=B_REPS):
 
 
 def d1(out, rng):
-    runs = json.loads((out / "d1_runs.json").read_text())
+    runs = json.loads(gzip.open(out / "d1_runs.json.gz", "rt").read())
     g = defaultdict(list)
     for r in runs:
         g[(r["kind"], r["method"], r["d"], r["k"], r["order"], r["refs"])].append(r)
@@ -155,7 +156,11 @@ def d2(out):
         res["sensitivity"] = []
         for (ex, m, k), pp in sorted(g.items()):
             per = {kk: float(np.mean(v)) for kk, v in pp.items()}
+            # Without board-5 methane a board-5 master head has no methane class, so the
+            # like-for-like comparison uses the 15 pairs whose master is not board 5.
+            m5 = [v for kk, v in per.items() if kk[0] != 5]
             res["sensitivity"].append(dict(exclusion=ex, method=m, k=k, accuracy=float(np.mean(list(per.values()))),
+                                           accuracy_master_not5=float(np.mean(m5)), n_pairs_master_not5=len(m5),
                                            worst_pair=float(min(per.values()))))
     return res
 
@@ -164,7 +169,7 @@ def main():
     out = Path(sys.argv[1]) if len(sys.argv) > 1 else R / "e6_20261110"
     rng = np.random.default_rng(20270131 + 600)
     summary = dict(note="Post hoc revision analyses; frozen hyperparameters; see PROTOCOL_CHANGES.md")
-    if (out / "d1_runs.json").exists():
+    if (out / "d1_runs.json.gz").exists():
         summary["d1"] = d1(out, rng)
     summary["e2_stats"] = e2_stats(rng)
     summary["e4_stats"] = e4_stats(rng)

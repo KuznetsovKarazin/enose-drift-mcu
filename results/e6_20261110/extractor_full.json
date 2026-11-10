@@ -1,0 +1,7 @@
+{
+ "n_recordings": 640,
+ "total_samples": 38005737,
+ "bit_identical": 640,
+ "max_rel_diff": 0.0,
+ "n_within_1e_5": 640
+}

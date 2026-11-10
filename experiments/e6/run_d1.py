@@ -11,6 +11,7 @@ results are reported as sensitivity analyses, separately from E1-E5.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import sys
 import time
@@ -216,7 +217,8 @@ def main():
                     jobs.append(("f64", f"M6@{beta}", d, "M6", k, s, "shuffled", "uniform"))
     with ProcessPoolExecutor(a.jobs) as pool:
         runs = list(pool.map(job, jobs, chunksize=4))
-    (a.out / "d1_runs.json").write_text(json.dumps(runs))
+    with gzip.open(a.out / "d1_runs.json.gz", "wt") as fh:
+        json.dump(runs, fh)
     e3_seeds = [E3_SEED_BASE + i for i in range(a.seeds)]
     e3_jobs = [(n, d, g, k, s) for n in ("M6", "M6b", "M6@0.9", "M6@0.95", "M6@0.99") for d in (16, 128)
                for g in range(6) for k in (1, 5, 20) for s in e3_seeds]

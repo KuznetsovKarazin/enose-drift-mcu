@@ -1,0 +1,21 @@
+\begin{table}[t]
+\caption{Drift Stream Under Less Favourable Calibration ($k=20$, Accuracy, Batches 3--10)}
+\label{tab:scen}\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l r rrrr}\toprule
+ & & \multicolumn{2}{c}{References of all gases} & \multicolumn{2}{c}{References of one gas}\\\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Method & $d$ & shuffled & gas blocks & shuffled & gas blocks\\\midrule
+M1 EWMA & 16 & 0.541 & 0.514 & 0.544 & 0.520\\
+M5 NLMS & 16 & 0.574 & 0.565 & 0.391 & 0.371\\
+M6 RLS & 16 & 0.876 & 0.867 & 0.329 & 0.313\\
+M7 block OLS & 16 & 0.898 & 0.890 & 0.136 & 0.134\\
+M1+M5 EWMA + NLMS & 16 & 0.575 & 0.554 & 0.424 & 0.396\\
+\midrule
+M1 EWMA & 128 & 0.614 & 0.541 & 0.615 & 0.538\\
+M5 NLMS & 128 & 0.772 & 0.752 & 0.472 & 0.462\\
+M6 RLS & 128 & 0.923 & 0.924 & 0.536 & 0.522\\
+M7 block OLS & 128 & 0.855 & 0.855 & 0.355 & 0.366\\
+M1+M5 EWMA + NLMS & 128 & 0.798 & 0.675 & 0.597 & 0.485\\
+\bottomrule
+\multicolumn{6}{p{0.95\columnwidth}}{\scriptsize First column: protocol of E2. Gas blocks: within each batch the recordings arrive grouped by gas in a random gas order. One gas: all $k$ references of a session come from one randomly chosen gas. 20 seeds; the 95\% intervals over seeds are at most $\pm0.036$ and are given in the repository.}
+\end{tabular}
+\end{table}

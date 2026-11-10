@@ -37,3 +37,10 @@ Reason: two reviews of the first manuscript draft (2026-11-10).
    fit (head, block least squares, DS, RLS warm start) is penalised by 1e-9;
    M9 is block-diagonal DS with one affine 2x2 (d = 16) or 8x8 (d = 64) map per
    sensor, not a band.
+8. **E6, extractor on complete recordings (post hoc).** The float32 C extractor
+   (`f_ext_run` in `mcu/host/f32_lib.c`) over all 640 complete D2 recordings,
+   compared with the features used in E4 (`experiments/e6/ext_full.py`).
+9. **D2 exclusion, comparison basis.** Without the methane recordings of board 5
+   a board-5 master head has no methane class; the like-for-like comparison uses
+   the 15 pairs whose master is not board 5 (`accuracy_master_not5` in
+   `results/e6_20261110/summary.json`).
