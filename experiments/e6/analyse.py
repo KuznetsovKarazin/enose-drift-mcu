@@ -162,6 +162,17 @@ def d2(out):
             res["sensitivity"].append(dict(exclusion=ex, method=m, k=k, accuracy=float(np.mean(list(per.values()))),
                                            accuracy_master_not5=float(np.mean(m5)), n_pairs_master_not5=len(m5),
                                            worst_pair=float(min(per.values()))))
+    p = out / "d2_concentrated_runs.json"
+    if p.exists():
+        g = defaultdict(lambda: defaultdict(list))
+        for r in json.loads(p.read_text()):
+            g[(r["scenario"], r["method"])][tuple(r["pair"])].append(r["accuracy"])
+        res["concentrated"] = []
+        for (sc, m), pp in sorted(g.items()):
+            per = {kk: float(np.mean(v)) for kk, v in pp.items()}
+            res["concentrated"].append(dict(scenario=sc, method=m, accuracy=float(np.mean(list(per.values()))),
+                                            accuracy_master_not5=float(np.mean([v for kk, v in per.items() if kk[0] != 5])),
+                                            worst_pair=float(min(per.values()))))
     return res
 
 

@@ -2,22 +2,21 @@
 \caption{Paired Differences in Accuracy}
 \label{tab:stats}\centering\scriptsize\setlength{\tabcolsep}{2pt}
 \begin{tabular}{l r r l}\toprule
-Comparison & Mean & Better & 95\% interval\\\midrule
-\multicolumn{4}{l}{\emph{E2, drift stream: units are the 8 test batches}}\\
-M1 vs M0, $d=16$, $k=0$ & +0.107 & 6/8 & [-0.09, +0.38]$^a$\\
-M1 vs M0, $d=128$, $k=0$ & +0.116 & 7/8 & [-0.09, +0.26]$^a$\\
-M5 vs M0, $d=128$, $k=20$ & +0.274 & 8/8 & [+0.17, +0.51]$^a$\\
-M6 vs M5, $d=128$, $k=20$ & +0.151 & 8/8 & [+0.05, +0.29]$^a$\\
-M7 vs M6, $d=16$, $k=20$ & +0.022 & 4/8 & [-0.05, +0.16]$^a$\\
-M6 vs M5, $d=16$, $k=20$ & +0.302 & 8/8 & [+0.12, +0.47]$^a$\\
-\multicolumn{4}{l}{\emph{E4, transfer: units are the 19 board pairs}}\\
-M1 $k=0$ vs M0 $k=0$ & +0.065 & 15/19 & [+0.008, +0.138]$^b$\\
-M8 $k=16$ vs M1 $k=16$ & +0.049 & 16/19 & [-0.004, +0.123]$^b$\\
-M8 $k=16$ vs M6 $k=16$ & +0.022 & 13/19 & [+0.003, +0.045]$^b$\\
-M8 $d=16$ vs $d=64$, $k=16$ & +0.009 & 10/19 & [-0.013, +0.040]$^b$\\
-M1 $k=16$ vs M1 $k=0$ & +0.011 & 15/19 & [-0.000, +0.020]$^b$\\
-M8 $k=8$ vs M1 $k=8$ & +0.025 & 11/19 & [-0.006, +0.071]$^b$\\
+Comparison & Mean & Better & Spread\\\midrule
+\multicolumn{4}{l}{\emph{E2, drift stream: units are the 8 test batches; spread = range over batches}}\\
+M1 vs M0, $d=16$, $k=0$ & +0.107 & 6/8 & [-0.09, +0.38]\\
+M1 vs M0, $d=128$, $k=0$ & +0.116 & 7/8 & [-0.09, +0.26]\\
+M5 vs M0, $d=128$, $k=20$ & +0.274 & 8/8 & [+0.17, +0.51]\\
+M6 vs M5, $d=128$, $k=20$ & +0.151 & 8/8 & [+0.05, +0.29]\\
+M7 vs M6, $d=16$, $k=20$ & +0.022 & 4/8 & [-0.05, +0.16]\\
+M6 vs M5, $d=16$, $k=20$ & +0.302 & 8/8 & [+0.12, +0.47]\\
+\multicolumn{4}{l}{\emph{E4, transfer: units are the 19 board pairs; spread = 95\% board-bootstrap interval}}\\
+M1 vs M0, $k=0$ & +0.065 & 15/19 & [+0.008, +0.138]\\
+M8 vs M1, $k=16$ & +0.049 & 16/19 & [-0.004, +0.123]\\
+M8 vs M6, $k=16$ & +0.022 & 13/19 & [+0.003, +0.045]\\
+M8 $d=16$ vs $d=64$, $k=16$ & +0.009 & 10/19 & [-0.013, +0.040]\\
+M8 vs M1, $k=8$ & +0.025 & 11/19 & [-0.006, +0.071]\\
 \bottomrule
-\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize $^a$Range of the per-batch differences; an interval over the 20 reference draws would only describe this one stream and is given in the repository. $^b$Percentile interval of a cluster bootstrap that resamples the five boards (10\,000 replicates). Both comparisons in a row use identical test records.}
+\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize E2: the range of the per-batch differences is a description, not a confidence interval; intervals over the 20 reference draws describe only this one stream and are given in the repository. E4: cluster bootstrap resampling the five boards (10\,000 replicates); with five clusters the intervals are coarse. Both methods of a row are evaluated on identical test records.}
 \end{tabular}
 \end{table}

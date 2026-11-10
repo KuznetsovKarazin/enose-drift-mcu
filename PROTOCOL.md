@@ -1,9 +1,8 @@
 # Experimental protocol
 
-Status: E1/E2 frozen on 2026-11-09 by commit 4a439fb (local tag `protocol-v1`;
-tag push is refused from the cloud session) before their first full run.
+Status: E1/E2 frozen on 2026-11-09 by commit 4a439fb before their first full run.
 E3/E4 frozen by the commit that adds the "E3/E4 details" section below,
-before their first full run. E5 (MCU) remains a draft. After freezing, any change is
+before their first full run. E5 (MCU) was fixed by commit 578719c (firmware, fixture and expected outputs) before the board runs. After freezing, any change is
 logged in `PROTOCOL_CHANGES.md` with its reason; nothing is re-tuned on test data.
 
 ## Aim

@@ -4798,6 +4798,204 @@
     "n_pairs_master_not5": 15,
     "worst_pair": 0.7364583333333334
    }
+  ],
+  "concentrated": [
+   {
+    "scenario": "all_gases",
+    "method": "M0",
+    "accuracy": 0.8349278143274854,
+    "accuracy_master_not5": 0.8626793981481481,
+    "worst_pair": 0.6953125
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M1",
+    "accuracy": 0.9065241228070174,
+    "accuracy_master_not5": 0.9432638888888889,
+    "worst_pair": 0.7069444444444445
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M4",
+    "accuracy": 0.9027869152046782,
+    "accuracy_master_not5": 0.9356944444444442,
+    "worst_pair": 0.7260416666666667
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M6",
+    "accuracy": 0.9331323099415204,
+    "accuracy_master_not5": 0.9472106481481481,
+    "worst_pair": 0.8458333333333334
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M7",
+    "accuracy": 0.9044636330409357,
+    "accuracy_master_not5": 0.9242708333333333,
+    "worst_pair": 0.7864583333333334
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M8",
+    "accuracy": 0.9554139254385965,
+    "accuracy_master_not5": 0.9569965277777778,
+    "worst_pair": 0.9152777777777779
+   },
+   {
+    "scenario": "all_gases",
+    "method": "M9",
+    "accuracy": 0.9040341739766082,
+    "accuracy_master_not5": 0.9368518518518519,
+    "worst_pair": 0.7364583333333334
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M0",
+    "accuracy": 0.8328764619883041,
+    "accuracy_master_not5": 0.8600694444444443,
+    "worst_pair": 0.65625
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M1",
+    "accuracy": 0.9117141812865497,
+    "accuracy_master_not5": 0.9523553240740739,
+    "worst_pair": 0.7083333333333335
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M4",
+    "accuracy": 0.9027777777777778,
+    "accuracy_master_not5": 0.9456018518518517,
+    "worst_pair": 0.7152777777777779
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M6",
+    "accuracy": 0.9361796418128655,
+    "accuracy_master_not5": 0.9605324074074074,
+    "worst_pair": 0.8114583333333332
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M7",
+    "accuracy": 0.9194992690058479,
+    "accuracy_master_not5": 0.9464120370370371,
+    "worst_pair": 0.7708333333333335
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M8",
+    "accuracy": 0.9667397660818713,
+    "accuracy_master_not5": 0.9668981481481482,
+    "worst_pair": 0.9097222222222221
+   },
+   {
+    "scenario": "low_levels",
+    "method": "M9",
+    "accuracy": 0.9042397660818713,
+    "accuracy_master_not5": 0.9474537037037037,
+    "worst_pair": 0.7152777777777779
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M0",
+    "accuracy": 0.8295714285714284,
+    "accuracy_master_not5": 0.858342857142857,
+    "worst_pair": 0.6878571428571427
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M1",
+    "accuracy": 0.8993734335839599,
+    "accuracy_master_not5": 0.9371333333333333,
+    "worst_pair": 0.7046666666666667
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M4",
+    "accuracy": 0.8469047619047617,
+    "accuracy_master_not5": 0.8868285714285714,
+    "worst_pair": 0.6676666666666666
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M6",
+    "accuracy": 0.8039197994987468,
+    "accuracy_master_not5": 0.8300126984126984,
+    "worst_pair": 0.6692857142857142
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M7",
+    "accuracy": 0.7343258145363407,
+    "accuracy_master_not5": 0.7619142857142855,
+    "worst_pair": 0.595
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M8",
+    "accuracy": 0.7851152882205513,
+    "accuracy_master_not5": 0.819152380952381,
+    "worst_pair": 0.6256666666666666
+   },
+   {
+    "scenario": "one_gas",
+    "method": "M9",
+    "accuracy": 0.8437769423558897,
+    "accuracy_master_not5": 0.8831333333333332,
+    "worst_pair": 0.6576666666666668
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M0",
+    "accuracy": 0.8311175073099415,
+    "accuracy_master_not5": 0.859045138888889,
+    "worst_pair": 0.690625
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M1",
+    "accuracy": 0.9008132309941519,
+    "accuracy_master_not5": 0.9376446759259258,
+    "worst_pair": 0.7041666666666667
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M4",
+    "accuracy": 0.8755391081871345,
+    "accuracy_master_not5": 0.90671875,
+    "worst_pair": 0.7378472222222223
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M6",
+    "accuracy": 0.8358644005847954,
+    "accuracy_master_not5": 0.8596412037037038,
+    "worst_pair": 0.675
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M7",
+    "accuracy": 0.7729897660818713,
+    "accuracy_master_not5": 0.8057175925925927,
+    "worst_pair": 0.6246527777777778
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M8",
+    "accuracy": 0.8246207967836258,
+    "accuracy_master_not5": 0.8606076388888889,
+    "worst_pair": 0.6390625
+   },
+   {
+    "scenario": "two_gases",
+    "method": "M9",
+    "accuracy": 0.8688322368421053,
+    "accuracy_master_not5": 0.9026331018518517,
+    "worst_pair": 0.7208333333333334
+   }
   ]
  }
 }

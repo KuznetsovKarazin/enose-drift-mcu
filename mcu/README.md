@@ -1,4 +1,4 @@
-# E5 firmware: drift-compensation kernels on Mega2560, ESP32-C3, ESP32-S3
+# Firmware and board runs (E5, E7): Mega2560, ESP32-C3, ESP32-S3
 
 The firmware runs every compensation kernel on a fixed fixture of real data
 (D1b batch 7 for M0/M1/M5/M6/M7, D2 board 1 -> board 2 for DS, one raw D2
@@ -72,3 +72,14 @@ take about 15 min each and run only with `--mega-d128`. The protocol and
 with the board (made by `python mcu/make_hil_expected.py`), so the board run
 needs no C compiler on the PC. Without that file, `hil.py` recomputes them,
 which requires gcc.
+
+## Compiler stack frames
+
+`stack/stack_probe.c` includes the kernels with inlining disabled so that the
+compiler reports the stack frame of each function (`-fstack-usage`). It is not
+linked into the firmware. For example, with the PlatformIO toolchains:
+
+```sh
+cd mcu && avr-gcc -mmcu=atmega2560 -Os -fstack-usage -Iinclude -c stack/stack_probe.c -o stack_probe.o
+# stack_probe.su: ek_ridge 67 B + ek_chol_solve 56 B = 123 B, the deepest chain
+```

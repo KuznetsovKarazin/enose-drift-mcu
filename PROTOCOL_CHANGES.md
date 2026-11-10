@@ -44,3 +44,16 @@ Reason: two reviews of the first manuscript draft (2026-11-10).
    a board-5 master head has no methane class; the like-for-like comparison uses
    the 15 pairs whose master is not board 5 (`accuracy_master_not5` in
    `results/e6_20261110/summary.json`).
+10. **E6, transfer pairs from restricted conditions (post hoc, round 2).** E4 at
+    d = 16, k = 16 with the 16 transfer pairs drawn only from the four lowest
+    concentration levels, from two gases or from one gas
+    (`experiments/e6/run_d2_conc.py`, `results/e6_20261110/d2_concentrated_runs.json`).
+11. **E6, day matrix (post hoc, round 2).** Static d = 16 head trained on each
+    repetition of a board and tested on every other repetition, so that the
+    day-to-day conclusion does not rest on the assumed order of the days
+    (`experiments/e6/day_matrix.py`, `results/e6_20261110/day_matrix.json`).
+12. **Board-5 methane.** Fonollosa et al. (2016), Sec. 4.3, state that these
+    recordings were discarded because of acquisition problems; the paper now
+    cites this and bases its practical conclusions on the cleaned 15-pair analysis.
+13. **hil.py robustness.** The run loop writes `raw.log` and `manifest.json`
+    (with `completed` and `error`) even when a run stops with an exception.

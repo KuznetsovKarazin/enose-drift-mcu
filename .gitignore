@@ -11,3 +11,7 @@ paper/*.fdb_latexmk
 paper/*.fls
 paper/*.log
 paper/*.out
+mcu/*.o
+mcu/*.su
+paper/*.synctex.gz
+runs/

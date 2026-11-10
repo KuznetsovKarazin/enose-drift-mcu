@@ -88,29 +88,45 @@ def table_e2(e2, S):
 
 
 def table_stats(S):
-    lab = lambda x: f"{x[2]}" + (f" ($d={x[0]}$, $k={x[1]}$)")
     lines = [r"\begin{table}[t]", r"\caption{Paired Differences in Accuracy}", r"\label{tab:stats}\centering\scriptsize\setlength{\tabcolsep}{2pt}",
-             r"\begin{tabular}{l r r l}\toprule", r"Comparison & Mean & Better & 95\% interval\\\midrule",
-             r"\multicolumn{4}{l}{\emph{E2, drift stream: units are the 8 test batches}}\\"]
+             r"\begin{tabular}{l r r l}\toprule", r"Comparison & Mean & Better & Spread\\\midrule",
+             r"\multicolumn{4}{l}{\emph{E2, drift stream: units are the 8 test batches; spread = range over batches}}\\"]
     for x in S["e2_stats"]["differences"]:
         a, b = x["a"], x["b"]
         lines.append(f"{a[2]} vs {b[2]}, $d={a[0]}$, $k={a[1]}$ & {x['mean_diff']:+.3f} & {x['batches_better']}/{x['n_batches']} & "
-                     f"[{x['min_batch_diff']:+.2f}, {x['max_batch_diff']:+.2f}]$^a$\\\\")
-    lines.append(r"\multicolumn{4}{l}{\emph{E4, transfer: units are the 19 board pairs}}\\")
+                     f"[{x['min_batch_diff']:+.2f}, {x['max_batch_diff']:+.2f}]\\\\")
+    lines.append(r"\multicolumn{4}{l}{\emph{E4, transfer: units are the 19 board pairs; spread = 95\% board-bootstrap interval}}\\")
     for x in S["e4_stats"]:
         a, b = x["a"], x["b"]
-        name = f"{a[2]} $k={a[1]}$ vs {b[2]} $k={b[1]}$" if a[0] == b[0] else f"{a[2]} $d={a[0]}$ vs $d={b[0]}$, $k={a[1]}$"
+        if a[2] == b[2] and a[0] == b[0]:
+            continue      # M1 at k=16 vs k=0 would compare different test sets
+        name = f"{a[2]} vs {b[2]}, $k={a[1]}$" if a[0] == b[0] else f"{a[2]} $d={a[0]}$ vs $d={b[0]}$, $k={a[1]}$"
         lo, hi = x["ci_board_bootstrap"]
-        lines.append(f"{name} & {x['mean_diff']:+.3f} & {x['pairs_better']}/{x['n_pairs']} & [{lo:+.3f}, {hi:+.3f}]$^b$\\\\")
-    lines += [r"\bottomrule", r"\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize $^a$Range of the per-batch differences; an interval over the 20 reference draws would only describe this one stream and is given in the repository. $^b$Percentile interval of a cluster bootstrap that resamples the five boards (10\,000 replicates). Both comparisons in a row use identical test records.}",
+        lines.append(f"{name} & {x['mean_diff']:+.3f} & {x['pairs_better']}/{x['n_pairs']} & [{lo:+.3f}, {hi:+.3f}]\\\\")
+    lines += [r"\bottomrule", r"\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize E2: the range of the per-batch differences is a description, not a confidence interval; intervals over the 20 reference draws describe only this one stream and are given in the repository. E4: cluster bootstrap resampling the five boards (10\,000 replicates); with five clusters the intervals are coarse. Both methods of a row are evaluated on identical test records.}",
               r"\end{tabular}", r"\end{table}"]
     (P / "tables/stats.tex").write_text("\n".join(lines) + "\n")
+
+
+def table_conc(S):
+    rows = {(r["scenario"], r["method"]): r for r in S["d2"]["concentrated"]}
+    meth = ["M0", "M1", "M4", "M9", "M8", "M6", "M7"]
+    names = {"all_gases": "16 of 40 conditions (E4)", "low_levels": "4 lowest levels, all gases", "two_gases": "Two gases, all levels",
+             "one_gas": "One gas (10 pairs)"}
+    lines = [r"\begin{table}[t]", r"\caption{Transfer With Transfer Pairs From Restricted Conditions ($d=16$, $k=16$, Post Hoc)}",
+             r"\label{tab:conc}\centering\scriptsize\setlength{\tabcolsep}{2.2pt}", r"\begin{tabular}{l rrrrrrr}\toprule",
+             "Pairs drawn from & " + " & ".join(meth) + r"\\\midrule"]
+    for sc in ("all_gases", "low_levels", "two_gases", "one_gas"):
+        lines.append(names[sc] + " & " + " & ".join(f"{rows[(sc, m)]['accuracy']:.3f}" for m in meth) + r"\\")
+    lines += [r"\bottomrule", r"\multicolumn{8}{p{0.95\columnwidth}}{\scriptsize Mean accuracy over 19 board pairs and 20 seeds; the gases are drawn per seed. M0 and M1 do not use the pairs and change only because the evaluated records differ slightly.}",
+              r"\end{tabular}", r"\end{table}"]
+    (P / "tables/conc.tex").write_text("\n".join(lines) + "\n")
 
 
 def table_scenarios(S):
     sc = {(r["method"], r["d"], r["k"], r["order"], r["refs"]): r for r in S["d1"]["scenarios"]}
     cols = [("shuffled", "uniform"), ("grouped", "uniform"), ("shuffled", "one_gas"), ("grouped", "one_gas")]
-    lines = [r"\begin{table}[t]", r"\caption{Drift Stream Under Less Favourable Calibration ($k=20$, Accuracy, Batches 3--10)}",
+    lines = [r"\begin{table}[t]", r"\caption{Drift Stream Under Less Favourable Calibration ($k=20$, Accuracy, Batches 3--10, Post Hoc)}",
              r"\label{tab:scen}\centering\scriptsize\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{l r rrrr}\toprule",
              r" & & \multicolumn{2}{c}{References of all gases} & \multicolumn{2}{c}{References of one gas}\\\cmidrule(lr){3-4}\cmidrule(lr){5-6}",
              r"Method & $d$ & shuffled & gas blocks & shuffled & gas blocks\\\midrule"]
@@ -217,9 +233,11 @@ def table_e3():
         for d in (16, 128):
             for k in (1, 5, 20):
                 r = s.get((d, k, m))
-                cells.append(f"{r['rmse_mean_over_gases']:.3f}" if r else "--")
+                mark = "$^\\dagger$" if (m == "M6" and k == 20) else ""
+                cells.append(f"{r['rmse_mean_over_gases']:.3f}{mark}" if r else "--")
         lines.append(" & ".join(cells) + r"\\")
-    lines += [r"\bottomrule\end{tabular}", r"\end{table}"]
+    lines += [r"\bottomrule", r"\multicolumn{7}{p{0.95\columnwidth}}{\scriptsize Gas identity known; $k$ references of that gas per batch. $^\dagger$RLS with the selected $\beta=0.8$ winds up at $k=20$ for toluene and ammonia (worst gas 0.95 at $d=16$); with $\beta=0.95$ (post hoc) it gives 0.171 and 0.124.}",
+              r"\end{tabular}", r"\end{table}"]
     (P / "tables/e3.tex").write_text("\n".join(lines) + "\n")
     return s
 
@@ -301,9 +319,11 @@ def fig_timing(t):
               "OLS refit", "DS fit", "DS apply", "extract"]
     fig, ax = plt.subplots(figsize=(7.16, 2.0))
     x = np.arange(len(keys)); w = 0.27
-    for i, (b, c) in enumerate((("Mega2560", "#555555"), ("ESP32-C3", "#1f77b4"), ("ESP32-S3", "#ff7f0e"))):
+    plt.rcParams["hatch.linewidth"] = 0.5
+    for i, (b, c, h) in enumerate((("Mega2560", "#555555", ""), ("ESP32-C3", "#1f77b4", "////"),
+                                   ("ESP32-S3", "#ff7f0e", "...."))):
         v = [float(t[(b, k)]["us_median"]) if t[(b, k)]["status"] == "measured" else np.nan for k in keys]
-        ax.bar(x + (i - 1) * w, v, w, label=b, color=c)
+        ax.bar(x + (i - 1) * w, v, w, label=b, color=c, hatch=h, edgecolor="k", linewidth=0.3)
         if b == "Mega2560":
             for xi, vi in zip(x, v):
                 if np.isnan(vi):
@@ -338,11 +358,44 @@ def fig_graphical(e2, e4, t):
     plt.close(fig)
 
 
+def table_e7():
+    """Table of the complete-stream board runs (results/e7_20261110/summary.json, from experiments/e7_summary.py)."""
+    E = json.loads((ROOT / "results/e7_20261110/summary.json").read_text())
+    B = ("Mega2560", "ESP32-C3", "ESP32-S3")
+
+    def g(v, nd=3):
+        if v >= 1000:
+            return f"{round(v):,}".replace(",", "\\,")
+        return f"{v:.{nd}g}"
+
+    rows = [
+        ("Complete D1 streams", [str(E[b]["streams"]) for b in B]),
+        ("Predictions differing (all RLS)", [f"{E[b]['disagreements']} of {E[b]['predictions']:,}".replace(",", "\\,") for b in B]),
+        ("DS pairs matching host accuracy", [f"{E[b]['ds_matches']}/{E[b]['ds_pairs']}" for b in B]),
+        (r"Static head, $d=16$ ($\mu$s/sample)", [g(E[b]["static16_us"]) for b in B]),
+        (r"RLS update, $d=16$ ($\mu$s/ref.)", [g(E[b]["rls16_ref_us"]) for b in B]),
+        (r"Block OLS refit, $k=20$ (ms)", [g(E[b]["ols16_refit_us"] / 1000) for b in B]),
+        ("DS fit + fusion, 16 pairs (ms)", [g(E[b]["ds_fit_fuse_us"] / 1000) for b in B]),
+        (r"Fused DS head ($\mu$s/sample)", [g(E[b]["ds_apply_us"]) for b in B]),
+        (r"Extractor ($\mu$s/sample)", [g(E[b]["extractor_us"]) for b in B]),
+        ("Peak stack (B)", [g(E[b]["stack_peak"]) for b in B]),
+        ("Largest test arena (B)", [g(E[b]["arena_max"]) for b in B]),
+    ]
+    lines = [r"\begin{table}[t]", r"\caption{Complete Streams on the Boards (E7)}",
+             r"\label{tab:e7}\centering\scriptsize\setlength{\tabcolsep}{3pt}",
+             r"\begin{tabular}{l r r r}\toprule", r" & Mega2560 & ESP32-C3 & ESP32-S3\\\midrule"]
+    lines += [f"{lab} & " + " & ".join(v) + r"\\" for lab, v in rows]
+    lines += [r"\bottomrule",
+              r"\multicolumn{4}{p{0.95\columnwidth}}{\scriptsize D1: seed 0, $k=20$; Mega2560 runs the compact-feature configurations only. Times include feature preprocessing and are means over the complete streams; the stack peak covers the whole stack (Mega2560) or the Arduino loop task (ESP32). The test firmware keeps every head in RAM (Section~\ref{sec:memory}).}",
+             r"\end{tabular}", r"\end{table}"]
+    (P / "tables/e7.tex").write_text("\n".join(lines) + "\n")
+
+
 def main():
     (P / "tables").mkdir(exist_ok=True); (P / "figures").mkdir(exist_ok=True)
     e2 = load_e2(); e4 = load_e4(); t = load_e5(); S = load_summary()
     table_e2(e2, S); table_e4(e4); table_e3(); table_mcu(t)
-    table_stats(S); table_scenarios(S); rows = table_ram()
+    table_stats(S); table_scenarios(S); table_conc(S); table_e7(); rows = table_ram()
     fig_frontier(e2, e4); fig_timing(t); fig_graphical(e2, e4, t)
     for r in rows:
         print(r)

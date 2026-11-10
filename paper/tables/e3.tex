@@ -7,7 +7,9 @@ Method & $k=1$ & 5 & 20 & $k=1$ & 5 & 20\\\midrule
 Static head & 0.312 & 0.312 & 0.329 & 0.326 & 0.326 & 0.340\\
 EWMA standardisation & 0.352 & 0.353 & 0.364 & 0.241 & 0.241 & 0.249\\
 NLMS on head & 0.308 & 0.294 & 0.274 & 0.183 & 0.154 & 0.140\\
-RLS on head & 0.283 & 0.193 & 0.322 & 0.182 & 0.148 & 0.317\\
+RLS on head & 0.283 & 0.193 & 0.322$^\dagger$ & 0.182 & 0.148 & 0.317$^\dagger$\\
 Block OLS on head & 0.224 & 0.184 & 0.174 & 0.176 & 0.138 & 0.119\\
-\bottomrule\end{tabular}
+\bottomrule
+\multicolumn{7}{p{0.95\columnwidth}}{\scriptsize Gas identity known; $k$ references of that gas per batch. $^\dagger$RLS with the selected $\beta=0.8$ winds up at $k=20$ for toluene and ammonia (worst gas 0.95 at $d=16$); with $\beta=0.95$ (post hoc) it gives 0.171 and 0.124.}
+\end{tabular}
 \end{table}

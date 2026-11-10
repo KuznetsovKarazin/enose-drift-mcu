@@ -223,15 +223,20 @@ def main():
         plan += [(n, 128) for n in ("M0", "M1", "M5", "M1+M5")]
     if a.board != "mega2560":
         plan += [("M6", 128)]
-    for name, d in ([] if a.skip_d1 else plan):
-        print(f"D1 stream {name} d={d} ...", flush=True)
-        r = run_d1(link, a.board, name, d); results.append(r)
-        print(f"  agreement {r['agree']}/{r['n']}, stack {r['stack_peak_bytes']} B", flush=True)
-        (a.out / "results.json").write_text(json.dumps(results, indent=1))
-    print("D2 DS fused ...", flush=True)
-    results += run_ds(link, a.board)
-    print("D2 extractor, full recordings ...", flush=True)
-    results += run_extractor(link, a.board, 3)
+    error = None
+    try:
+        for name, d in ([] if a.skip_d1 else plan):
+            print(f"D1 stream {name} d={d} ...", flush=True)
+            r = run_d1(link, a.board, name, d); results.append(r)
+            print(f"  agreement {r['agree']}/{r['n']}, stack {r['stack_peak_bytes']} B", flush=True)
+            (a.out / "results.json").write_text(json.dumps(results, indent=1))
+        print("D2 DS fused ...", flush=True)
+        results += run_ds(link, a.board)
+        print("D2 extractor, full recordings ...", flush=True)
+        results += run_extractor(link, a.board, 3)
+    except BaseException as e:            # keep the raw log and a manifest even when the run stops
+        error = f"{type(e).__name__}: {e}"
+        print("Run stopped:", error, flush=True)
     link.s.close()
     (a.out / "raw.log").write_text("\n".join(log) + "\n", encoding="utf-8")
     try:
@@ -246,11 +251,11 @@ def main():
     ok_ext = all(r["max_rel_diff"] <= 1e-5 for r in results if r["kind"] == "extractor")
     summary = dict(board=a.board, git_commit=git, utc=datetime.now(timezone.utc).isoformat(), seconds=round(time.time() - t0),
                    images=images, raw_sha256=sha(a.out / "raw.log"), all_d1_predictions_match=ok_d1,
-                   extractor_within_1e_5=ok_ext, ds_accuracy_matches_host=ok_ds,
-                   sources={str(p.relative_to(HERE)): sha(p) for p in sorted([*HERE.glob("include/*.h"), *HERE.glob("src/hil/*"), HERE / "platformio.ini", HERE / "hil.py"])})
+                   extractor_within_1e_5=ok_ext, ds_accuracy_matches_host=ok_ds, completed=error is None, error=error,
+                   sources={p.relative_to(HERE).as_posix(): sha(p) for p in sorted([*HERE.glob("include/*.h"), *HERE.glob("src/hil/*"), HERE / "platformio.ini", HERE / "hil.py"])})
     (a.out / "results.json").write_text(json.dumps(results, indent=1))
     (a.out / "manifest.json").write_text(json.dumps(summary, indent=1))
-    print("Validated" if ok_d1 and ok_ext and ok_ds else "Finished with mismatches (please send the folder anyway)", a.out)
+    print("Validated" if ok_d1 and ok_ext and ok_ds and error is None else "Finished with mismatches (please send the folder anyway)", a.out)
 
 
 if __name__ == "__main__":
