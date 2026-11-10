@@ -6,3 +6,8 @@ __pycache__/
 .pytest_cache/
 .pio/
 results/**/scratch/
+paper/*.aux
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out

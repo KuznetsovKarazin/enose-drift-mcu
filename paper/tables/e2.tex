@@ -1,0 +1,15 @@
+\begin{table*}[!t]
+\caption{Drift Compensation on the Gas Sensor Array Drift Data: Accuracy (Batches 3--10, 20 Seeds) and Persistent State}
+\label{tab:e2}\centering\footnotesize
+\begin{tabular}{l rrrr r @{\hspace{14pt}} rrrr r}\toprule
+ & \multicolumn{5}{c}{$d=16$} & \multicolumn{5}{c}{$d=128$}\\\cmidrule(lr){2-6}\cmidrule(lr){7-11}
+Method & $k=0$ & 1 & 5 & 20 & State (B) & $k=0$ & 1 & 5 & 20 & State (B)\\\midrule
+Static head & 0.434 & 0.434 & 0.434 & 0.433 & 0 & 0.498 & 0.498 & 0.498 & 0.498 & 0\\
+EWMA standardisation & 0.541 & 0.541 & 0.541 & 0.541 & 132 & 0.614 & 0.614 & 0.614 & 0.614 & 1\,028\\
+NLMS on head & -- & 0.447 & 0.479 & 0.574 & 4 & -- & 0.579 & 0.676 & 0.772 & 4\\
+RLS on head & -- & 0.447 & 0.631 & 0.876 & 1\,160 & -- & 0.634 & 0.792 & 0.923 & 66\,568\\
+Block OLS on head & -- & 0.243 & 0.614 & 0.898 & 1\,300 & -- & 0.481 & 0.721 & 0.855 & 10\,260\\
+EWMA + NLMS & -- & 0.546 & 0.557 & 0.575 & 136 & -- & 0.645 & 0.710 & 0.798 & 1\,032\\
+EWMA + block OLS & -- & 0.246 & 0.591 & 0.842 & 1\,432 & -- & 0.503 & 0.671 & 0.803 & 11\,288\\
+\bottomrule\end{tabular}
+\end{table*}

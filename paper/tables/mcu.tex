@@ -1,0 +1,19 @@
+\begin{table*}[!t]
+\caption{Measured Time per Call on the Boards (Median of 20 Timings in Two Sessions, $\mu$s) and Persistent State}
+\label{tab:mcu}\centering\footnotesize
+\begin{tabular}{l l r r rrr}\toprule
+Kernel & One call & State (B) & Host accuracy & Mega2560 & ESP32-C3 & ESP32-S3\\\midrule
+Static head, $d=16$ & classify & 0 & 0.433 & 5\,401 & 505.4 & 25.2\\
+Static head, $d=128$ & classify & 0 & 0.498 & 42\,542 & 4\,039 & 197.0\\
+EWMA, $d=16$ & classify & 132 & 0.541 & 7\,791 & 662.6 & 36.7\\
+EWMA, $d=128$ & classify & 1\,028 & 0.614 & 61\,438 & 5\,298 & 289.0\\
+NLMS, $d=16$ & classify + update & 4 & 0.574 & 9\,603 & 829.7 & 37.3\\
+NLMS, $d=128$ & classify + update & 4 & 0.772 & 74\,769 & 6\,528 & 287.2\\
+RLS, $d=16$ & classify + update & 1\,160 & 0.876 & 22\,102 & 1\,805 & 72.8\\
+RLS, $d=128$ & classify + update & 66\,568 & 0.923 & does not fit & 57\,904 & 2\,114\\
+Block OLS, $d=16$ & refit, $k=20$ & 1\,300 & 0.898 & 164\,426 & 11\,650 & 797.0\\
+DS, $d=16$ & fit, 16 pairs & 1\,088 & 0.955 & 274\,708 & 19\,792 & 1\,224\\
+DS, $d=16$ & map + classify & 1\,088 & 0.955 & 9\,412 & 826.0 & 35.2\\
+Feature extractor & one sample & 426/428 & -- & 1\,265 & 98.1 & 4.79\\
+\bottomrule\end{tabular}
+\end{table*}

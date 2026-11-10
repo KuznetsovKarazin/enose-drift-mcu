@@ -1,0 +1,13 @@
+\begin{table}[t]
+\caption{Concentration Regression Under Drift: RMSE in $\log_{10}$ ppmv (Batches 3--10, Six Gases, 20 Seeds)}
+\label{tab:e3}\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{l rrr rrr}\toprule
+ & \multicolumn{3}{c}{$d=16$} & \multicolumn{3}{c}{$d=128$}\\\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Method & $k=1$ & 5 & 20 & $k=1$ & 5 & 20\\\midrule
+Static head & 0.312 & 0.312 & 0.329 & 0.326 & 0.326 & 0.340\\
+EWMA standardisation & 0.352 & 0.353 & 0.364 & 0.241 & 0.241 & 0.249\\
+NLMS on head & 0.308 & 0.294 & 0.274 & 0.183 & 0.154 & 0.140\\
+RLS on head & 0.283 & 0.193 & 0.322 & 0.182 & 0.148 & 0.317\\
+Block OLS on head & 0.224 & 0.184 & 0.174 & 0.176 & 0.138 & 0.119\\
+\bottomrule\end{tabular}
+\end{table}
