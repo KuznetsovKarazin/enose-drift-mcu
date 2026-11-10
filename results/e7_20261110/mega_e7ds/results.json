@@ -1,0 +1,83 @@
+[
+ {
+  "kind": "ds_fused",
+  "pair": [
+   1,
+   3
+  ],
+  "n": 144,
+  "init_ram_bytes": 4628,
+  "accuracy_board": 0.9513888888888888,
+  "accuracy_host_fused32": 0.9513888888888888,
+  "n_ref": 0,
+  "us_ref": 0,
+  "n_obs": 144,
+  "us_obs": 679224,
+  "n_end": 1,
+  "us_end": 289488,
+  "stack_peak_bytes": 425
+ },
+ {
+  "kind": "ds_fused",
+  "pair": [
+   1,
+   4
+  ],
+  "n": 64,
+  "init_ram_bytes": 4628,
+  "accuracy_board": 0.984375,
+  "accuracy_host_fused32": 0.984375,
+  "n_ref": 0,
+  "us_ref": 0,
+  "n_obs": 64,
+  "us_obs": 301696,
+  "n_end": 1,
+  "us_end": 289268,
+  "stack_peak_bytes": 425
+ },
+ {
+  "kind": "ds_fused",
+  "pair": [
+   1,
+   5
+  ],
+  "n": 64,
+  "init_ram_bytes": 4628,
+  "accuracy_board": 0.984375,
+  "accuracy_host_fused32": 0.984375,
+  "n_ref": 0,
+  "us_ref": 0,
+  "n_obs": 64,
+  "us_obs": 302828,
+  "n_end": 1,
+  "us_end": 288960,
+  "stack_peak_bytes": 425
+ },
+ {
+  "kind": "extractor",
+  "file": "B1_GCO_F010_R1.txt",
+  "samples": 53000,
+  "n_push": 53000,
+  "us_push": 68209416,
+  "max_rel_diff": 3.725290298461914e-09,
+  "stack_peak_bytes": 415
+ },
+ {
+  "kind": "extractor",
+  "file": "B3_GCO_F010_R1.txt",
+  "samples": 59996,
+  "n_push": 59996,
+  "us_push": 76600012,
+  "max_rel_diff": 7.450580596923828e-09,
+  "stack_peak_bytes": 415
+ },
+ {
+  "kind": "extractor",
+  "file": "B5_GMe_F100_R2.txt",
+  "samples": 60000,
+  "n_push": 60000,
+  "us_push": 76300408,
+  "max_rel_diff": 1.4901161193847656e-08,
+  "stack_peak_bytes": 415
+ }
+]

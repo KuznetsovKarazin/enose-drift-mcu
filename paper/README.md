@@ -17,9 +17,6 @@ cd paper && latexmk -pdf main.tex
 
 ## Open items before submission
 
-- **E7 board runs** (`python mcu/hil.py --board ... --out runs/..._e7`): fill the
-  sentences in red (`\pending{...}`) in Section VI: agreement on complete streams,
-  time per sample, peak stack, arena size.
 - Zenodo archive and DOI for the code and board captures (on acceptance).
 - Confirm from the full text of Fonollosa et al. 2016 whether repetitions R1-R4
   follow the day order (the UCI page lists the days only).
