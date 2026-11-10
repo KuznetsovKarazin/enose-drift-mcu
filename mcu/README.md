@@ -67,3 +67,8 @@ The Mega2560 link runs at 1,000,000 baud. The d = 128 streams on the Mega2560
 take about 15 min each and run only with `--mega-d128`. The protocol and
 `hil.py` were tested against the same firmware source compiled for the host
 (`host/hil_host_shim.h`), which reproduced all 13,285 predictions per stream.
+
+`mcu/hil_expected.json.gz` holds the host float32 outputs that `hil.py` compares
+with the board (made by `python mcu/make_hil_expected.py`), so the board run
+needs no C compiler on the PC. Without that file, `hil.py` recomputes them,
+which requires gcc.

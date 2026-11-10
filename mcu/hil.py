@@ -42,6 +42,16 @@ K = 20
 BAUD = {"mega2560": 1_000_000, "esp32c3": 115200, "esp32s3": 115200}
 
 
+EXPECTED = HERE / "hil_expected.json.gz"   # host float32 outputs (mcu/make_hil_expected.py); no C compiler needed
+
+
+def expected():
+    import gzip
+    if not hasattr(expected, "cache"):
+        expected.cache = json.loads(gzip.open(EXPECTED, "rt").read()) if EXPECTED.exists() else None
+    return expected.cache
+
+
 class Link:
     def __init__(self, port, board, log):
         self.s = serial.Serial(port, BAUD[board], timeout=30)
@@ -84,13 +94,15 @@ def stats(link):
 def run_d1(link, board, name, d):
     import run_d1 as R
     X, y, b, _ = R.data(d)
-    expected = R.stream32(name, d, R.HP2[str(d)]["methods"].get(name, {}), K, SEED)
+    ex = expected()
+    expected_rows = (ex["d1"][f"{name}|{d}"] if ex else
+                     R.stream32(name, d, R.HP2[str(d)]["methods"].get(name, {}), K, SEED))
     link.send(b"I" + bytes([METHOD_ID[name], d]))
     init_bytes = int(link.expect("INIT").split(",")[1])
     rng = np.random.default_rng(SEED)
     nb = max(1, 128 // d) if board == "mega2560" else 32
     preds, agree, n = [], 0, 0
-    for row, bb in zip(expected, R.BATCHES):
+    for row, bb in zip(expected_rows, R.BATCHES):
         ref, rest = R.order_batch(np.flatnonzero(b == bb), y, rng, "shuffled", "uniform", K)
         for i in ref:
             link.send(b"R" + bytes([int(y[i])]) + f32bytes(X[i])); link.expect("r")
@@ -143,10 +155,11 @@ def run_ds(link, board):
             chunk = ev[s:s + nb]
             link.send(b"B" + bytes([len(chunk)]) + f32bytes(X[chunk]))
             got += [int(ch) for ch in link.expect("P,")[2:]]
-        ref = R2.ds_f32_job((d, 16, seed, (i, j)))
+        ex = expected()
+        acc_ref = ex["ds"][f"{i}->{j}"] if ex else R2.ds_f32_job((d, 16, seed, (i, j)))["acc_fused32"]
         out.append(dict(kind="ds_fused", pair=[i, j], n=len(ev), init_ram_bytes=init_bytes,
                         accuracy_board=float(np.mean(np.array(got) == y[ev])),
-                        accuracy_host_fused32=ref["acc_fused32"], **stats(link)))
+                        accuracy_host_fused32=acc_ref, **stats(link)))
     return out
 
 
