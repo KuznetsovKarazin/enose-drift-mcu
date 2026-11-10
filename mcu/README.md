@@ -41,3 +41,29 @@ logs, parsed JSON, firmware images and source hashes. Keep failed folders too.
 
 `python mcu/gen_fixture.py` (needs `scripts/download_data.py` and
 `scripts/extract_d2.py`). It rewrites the two generated headers and the manifest.
+
+## E7: complete streams on the boards (revision)
+
+The `*_hil` environments build a second firmware (`src/hil/hil_main.cpp`)
+that receives real samples from the host over USB and runs complete streams
+with the same kernels: D1 batches 2-10 in the order of E2 seed 0 with 20
+references per batch, DS transfer fitted and fused into the head on the board
+(pairs 1->3, 1->4, 1->5), and three complete 600 s D2 recordings through the
+streaming extractor. The board returns its predictions; `hil.py` compares them
+with the host float32 replica, and records kernel time per frame and the peak
+stack depth (stack painting). It needs the datasets on the PC:
+
+```powershell
+git pull
+py -m pip install -r requirements.txt -r mcu\requirements.txt
+py scripts\download_data.py
+py scripts\extract_d2.py
+py mcu\hil.py --board mega2560 --port COM7 --out runs\mega_e7
+py mcu\hil.py --board esp32c3  --port COM8 --out runs\c3_e7
+py mcu\hil.py --board esp32s3  --port COM9 --out runs\s3_e7
+```
+
+The Mega2560 link runs at 1,000,000 baud. The d = 128 streams on the Mega2560
+take about 15 min each and run only with `--mega-d128`. The protocol and
+`hil.py` were tested against the same firmware source compiled for the host
+(`host/hil_host_shim.h`), which reproduced all 13,285 predictions per stream.
